@@ -118,7 +118,6 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
     <button data-go="mais">Mais</button>
   </nav>
 </header>
-
 <main>
 
 <!-- INÍCIO -->
@@ -185,7 +184,7 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
 <ol class="passos" style="margin-bottom:0"><li>Liste 5 problemas da área de atuação da sua promotoria</li><li>Aplique a Matriz GUT e faça o ranking</li><li>Eleja o problema a priorizar agora</li><li>Use-o para montar o plano de atuação do tema</li></ol></div>
 <div class="box dest" id="gutbox">
 <h3>Calculadora GUT</h3>
-<p class="small">Dê uma nota de 1 (baixo) a 5 (alto) para cada critério. A pontuação é G × U × T. Os dados ficam só neste aparelho.</p>
+<p class="small">Dê uma nota de 1 (baixo) a 5 (alto) para cada critério. A pontuação é G × U × T. O dados ficam só neste aparelho.</p>
 <input class="gutn" id="gn" type="text" maxlength="80" placeholder="Descreva o problema" aria-label="Descrição do problema">
 <div class="gut">
 <div><label for="gg">Gravidade</label><select id="gg"></select></div>
@@ -199,10 +198,15 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
 <div class="prog"><i id="barra"></i></div><p class="small" id="contagem"></p>
 <div id="lista"></div>
 
-<h2>Como a SEPLAG ajuda</h2>
-<ul><li>Oficinas presenciais e virtuais</li><li>Assessoramento técnico individualizado</li><li>Construção, publicação e monitoramento no Portal PAPJ</li></ul>
+<h2>Onde cadastrar e como a SEPLAG ajuda</h2>
+<ul>
+  <li>Oficinas presenciais e virtuais</li>
+  <li>Assessoramento técnico individualizado</li>
+  <li>Acesse o sistema oficial para cadastrar e monitorar no <a href="https://papj.mpma.mp.br/workspace_session/new" target="_blank" rel="noopener">Portal PAPJ</a></li>
+</ul>
 <p class="small">O PAPJ é o parâmetro do indicador de resolutividade (Recomendação de Caráter Geral CNMP-CN nº 01/2023) e documenta a sua atuação no vitaliciamento.</p>
-<a class="btn verm" href="mailto:planejamento@mpma.mp.br?subject=Pedido%20de%20assessoria%20para%20o%20PAPJ">Pedir assessoria para o meu PAPJ</a>
+<a class="btn verm" href="https://papj.mpma.mp.br/workspace_session/new" target="_blank" rel="noopener">Acessar o Sistema PAPJ para Cadastrar</a>
+<a class="btn claro" href="mailto:planejamento@mpma.mp.br?subject=Pedido%20de%20assessoria%20para%20o%20PAPJ">Pedir assessoria para o meu PAPJ</a>
 </section>
 
 <!-- PROJETOS -->
@@ -271,8 +275,6 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
 </section>
 
 </main>
-
-<!-- MENU DE RODAPÉ APENAS PARA MOBILE -->
 <nav class="nav-rodape" aria-label="Seções Mobile">
 <button data-go="inicio" aria-current="page">Início</button>
 <button data-go="estrategia">Estratégia</button>
@@ -280,7 +282,6 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
 <button data-go="projetos">Projetos</button>
 <button data-go="mais">Mais</button>
 </nav>
-
 <script>
 const $=s=>document.querySelector(s);
 function ir(id){
