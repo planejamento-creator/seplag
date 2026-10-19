@@ -1,3 +1,19 @@
+Compreendido perfeitamente! Analisando a imagem, vi exatamente o que está acontecendo:
+
+Caixa desalinhada/cortada: O botão azul dentro da caixa expandida está tocando as bordas e vazando para fora nas laterais e na parte inferior por falta de margem/espaçamento (padding/margin).
+
+Remoção de marcações de texto: Ainda constavam textos como [cite: 1, 12] e o termo (Gmail) nos botões.
+
+Botão de Voltar Visível: Garantido um botão claro e visível no topo de todas as páginas secundárias.
+
+Navegação Direta: Os cartões da tela inicial voltam a ser botões diretos de navegação por clique (sem necessidade de abrir uma caixaSanfona dentro da própria tela inicial).
+
+Código Completo Atualizado e Corrigido (index.html)
+Substitua todo o conteúdo do seu arquivo index.html pelo código abaixo:
+
+HTML
+
+
 <!doctype html>
 <html lang="pt-BR">
 <head>
@@ -124,7 +140,7 @@ main {
   color: var(--azul);
   font-size: 14px;
   font-weight: 700;
-  padding: 8px 16px;
+  padding: 8px 18px;
   border-radius: 20px;
   cursor: pointer;
   margin-bottom: 16px;
@@ -166,10 +182,10 @@ p { margin: 0 0 14px; font-size: 16px; }
   text-align: center;
   border: 0;
   border-radius: 12px;
-  padding: 15px 20px;
+  padding: 14px 18px;
   font: inherit;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 15px;
   background: var(--azul);
   color: #fff;
   margin: 12px 0;
@@ -195,7 +211,7 @@ p { margin: 0 0 14px; font-size: 16px; }
   background: #EAEFFC;
 }
 
-/* CARTÕES E EXPANSÍVEIS (DETAILS) */
+/* CARTÕES DA TELA INICIAL (NAVEGAÇÃO DIRETA) */
 .card-acao {
   background: var(--branco);
   border: 1.5px solid var(--linha);
@@ -229,6 +245,7 @@ p { margin: 0 0 14px; font-size: 16px; }
   font-size: 20px;
 }
 
+/* EXPANSÍVEIS (DETAILS) - CORRIGIDO ESPAÇAMENTO INTERNO */
 details.card-expand {
   background: var(--branco);
   border: 1.5px solid var(--linha);
@@ -275,7 +292,7 @@ details.card-expand[open] summary::after {
 }
 
 details.card-expand > div {
-  padding: 14px 18px 18px;
+  padding: 16px;
   border-top: 1px solid var(--linha);
   background: #FAFAFD;
   font-size: 15px;
@@ -378,7 +395,7 @@ nav.nav-rodape button[aria-current=page] { color: var(--azul); font-weight: 700;
 <p class="lead">Bem-vindo(a) ao seu portal de apoio institucional. Aqui você encontra orientações sobre Planejamento Estratégico, elaboração do PAPJ, gestão de projetos, inovação, cultura e demais frentes de governança.</p>
 
 <h2>O que a SEPLAG faz por você</h2>
-<p class="small">Selecione uma das áreas abaixo para aceder às ferramentas e informações:</p>
+<p class="small">Selecione uma das áreas abaixo para acessar diretamente as ferramentas:</p>
 
 <button class="card-acao" data-go="estrategia">
   <h3>Planejamento Estratégico Institucional</h3>
@@ -561,7 +578,7 @@ nav.nav-rodape button[aria-current=page] { color: var(--azul); font-weight: 700;
 <h2>Onde cadastrar o seu plano oficial</h2>
 <div class="box dest" style="border-left-color: var(--azul);">
   <p><b>Atenção:</b> O envio e cadastro oficial do seu Plano de Atuação é realizado exclusivamente pelo canal oficial no <b>Portal PAPJ</b>.</p>
-  <a class="btn" href="https://papj.mpma.mp.br/workspace_session/new" target="_blank" rel="noopener" style="margin-top: 10px;">Acessar o Portal PAPJ para Cadastrar →</a>
+  <a class="btn" href="https://papj.mpma.mp.br/workspace_session/new" target="_blank" rel="noopener">Acessar o Portal PAPJ para Cadastrar →</a>
 </div>
 
 <h2>Como a SEPLAG ajuda</h2>
@@ -582,7 +599,7 @@ nav.nav-rodape button[aria-current=page] { color: var(--azul); font-weight: 700;
 <div class="chips" id="chips"></div>
 <div class="box dest" id="resp" aria-live="polite" hidden></div>
 
-<!-- OBSERVAÇÃO DE CONSULTA DE INICIATIVAS EXISTENTES -->
+<!-- CONSULTA DE INICIATIVAS EXISTENTES -->
 <div class="box dest" style="border-left-color: var(--azul);">
   <h3>Onde consultar iniciativas ou projetos existentes?</h3>
   <p class="small" style="margin-bottom:8px">Antes de elaborar uma nova proposta, verifique se a ação já existe para unir forças e evitar duplicidade:</p>
