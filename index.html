@@ -3,15 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="only light">
+<meta name="supported-color-schemes" content="light">
 <title>SEPLAG · Apoio ao Promotor</title>
 <meta name="theme-color" content="#1B226B">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <style>
-:root{--azul:#1B226B;--azul-hover:#12174A;--verm:#E4202B;--papel:#F0F2F9;--tinta:#11142D;--suave:#2F3560;--linha:#C8CDDF;--branco:#fff;box-sizing:border-box}
+:root{color-scheme:only light;--azul:#1B226B;--azul-hover:#12174A;--verm:#E4202B;--papel:#F0F2F9;--tinta:#11142D;--suave:#2F3560;--linha:#C8CDDF;--branco:#fff;box-sizing:border-box}
 *,*::before,*::after{box-sizing:inherit}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;color-scheme:only light;background:#F0F2F9}
 body{margin:0;background:var(--papel);color:var(--tinta);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;font-size:17px;padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
 
 header{position:sticky;top:0;z-index:10;background:var(--branco);border-bottom:2px solid var(--linha);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 12px rgba(27,34,107,.08)}
@@ -89,8 +91,14 @@ details.card-expand>div .btn{margin:12px 0 0}
 .passos li::before{content:counter(p);position:absolute;left:0;top:7px;width:28px;height:28px;border-radius:50%;background:var(--azul);color:#fff;text-align:center;font-size:14px;line-height:28px;font-weight:700}
 
 input[type=search],input[type=text],select{width:100%;font:inherit;font-size:16px;padding:12px;border:1.5px solid var(--linha);border-radius:10px;margin-bottom:8px;background:var(--branco);color:var(--tinta)}
-/* CAIXAS DE SELEÇÃO CENTRALIZADAS */
-select{text-align:center;text-align-last:center;-moz-text-align-last:center}
+/* CAIXAS DE SELEÇÃO CENTRALIZADAS (inclusive no celular) */
+select{
+  -webkit-appearance:none;-moz-appearance:none;appearance:none;
+  text-align:center;text-align-last:center;-moz-text-align-last:center;
+  padding:12px 30px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231B226B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 10px center;background-size:12px 8px;
+}
 select option{text-align:center}
 .gut{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}
 .gut div{text-align:center}
@@ -165,7 +173,7 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
 </button>
 
 <h2>Canais de atendimento</h2>
-<a class="btn" href="mailto:planejamento@mpma.mp.br?subject=Promotor%20de%20Justi%C3%A7a%20-%20Apoio%20da%20SEPLAG">Falar com a SEPLAG por e-mail</a>
+<a class="btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=planejamento@mpma.mp.br&su=Promotor%20de%20Justi%C3%A7a%20-%20Apoio%20da%20SEPLAG" target="_blank" rel="noopener">Falar com a SEPLAG por e-mail</a>
 <a class="btn claro" href="https://wa.me/5598991541905" target="_blank" rel="noopener">WhatsApp da SEPLAG: (98) 99154-1905</a>
 
 <h2>Instale no celular</h2>
@@ -294,7 +302,7 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
 </ul>
 <p class="small">O PAPJ é o parâmetro do indicador de resolutividade (Recomendação de Caráter Geral CNMP-CN nº 01/2023) e documenta a sua atuação no vitaliciamento.</p>
 
-<a class="btn claro" href="mailto:planejamento@mpma.mp.br?subject=Pedido%20de%20assessoria%20para%20o%20PAPJ">Pedir assessoria técnica por e-mail</a>
+<a class="btn claro" href="https://mail.google.com/mail/?view=cm&fs=1&to=planejamento@mpma.mp.br&su=Pedido%20de%20assessoria%20para%20o%20PAPJ" target="_blank" rel="noopener">Pedir assessoria técnica por e-mail</a>
 </section>
 
 <!-- PROJETOS -->
@@ -324,7 +332,7 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
 
 <div class="box az">
   <p style="margin-bottom:8px"><b>Não achou o que procura?</b> Fale com o CAO do seu tema ou pergunte à SEPLAG se já existe iniciativa parecida:</p>
-  <a class="btn claro" href="mailto:planejamento@mpma.mp.br?subject=Consulta%20sobre%20projeto%20existente" style="margin-bottom:0">Consultar a SEPLAG por e-mail</a>
+  <a class="btn claro" href="https://mail.google.com/mail/?view=cm&fs=1&to=planejamento@mpma.mp.br&su=Consulta%20sobre%20projeto%20existente" target="_blank" rel="noopener" style="margin-bottom:0">Consultar a SEPLAG por e-mail</a>
 </div>
 
 <h2>2. O que eu quero fazer?</h2>
@@ -350,7 +358,7 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
   <li>Deliberação da CGPE</li>
   <li>Comunicação do resultado. Em caso de reprovação, é possível pedir nova análise.</li>
 </ol>
-<a class="btn" href="mailto:planejamento@mpma.mp.br?subject=Proposta%20de%20projeto">Enviar proposta por e-mail</a>
+<a class="btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=planejamento@mpma.mp.br&su=Proposta%20de%20projeto" target="_blank" rel="noopener">Enviar proposta por e-mail</a>
 </section>
 
 <!-- MAIS -->
@@ -363,7 +371,7 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
   <div>
     <p>A SEPLAG produz informação gerencial e relatórios anuais de atividades, de gestão e de desempenho do PEI. O <b>Mapa Social MPMA</b> traz indicadores sociais da comarca para o seu planejamento.</p>
     <p class="small"><b>Um bom indicador no PAPJ é:</b> claro, mensurável, com fonte definida e periodicidade.</p>
-    <a class="btn claro" href="mailto:planejamento@mpma.mp.br?subject=Solicita%C3%A7%C3%A3o%20de%20dados">Solicitar dados por e-mail</a>
+    <a class="btn claro" href="https://mail.google.com/mail/?view=cm&fs=1&to=planejamento@mpma.mp.br&su=Solicita%C3%A7%C3%A3o%20de%20dados" target="_blank" rel="noopener">Solicitar dados por e-mail</a>
   </div>
 </details>
 
@@ -429,7 +437,7 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
     <a class="btn" href="https://wa.me/5598991541905" target="_blank" rel="noopener">WhatsApp: (98) 99154-1905</a>
     <a class="btn claro" href="tel:+559832191777">Telefone: (98) 3219-1777</a>
     <p class="small" style="margin-top:12px">Outros ramais: (98) 3219-1698, 1710 e 1659.</p>
-    <a class="btn claro" href="mailto:planejamento@mpma.mp.br">E-mail: planejamento@mpma.mp.br</a>
+    <a class="btn claro" href="https://mail.google.com/mail/?view=cm&fs=1&to=planejamento@mpma.mp.br" target="_blank" rel="noopener">E-mail: planejamento@mpma.mp.br</a>
     <a class="btn claro" href="https://planejamento.mpma.mp.br" target="_blank" rel="noopener">Site: planejamento.mpma.mp.br</a>
   </div>
 </details>
