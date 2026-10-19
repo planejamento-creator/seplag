@@ -12,42 +12,54 @@
 :root{--azul:#262B8C;--verm:#E4202B;--papel:#F5F6FB;--tinta:#161A3A;--suave:#5A5F86;--linha:#DADDEE;--branco:#fff;box-sizing:border-box}
 *,*::before,*::after{box-sizing:inherit}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--papel);color:var(--tinta);font:16px/1.55 "Avenir Next","Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding-bottom:calc(72px + env(safe-area-inset-bottom,0px))}
-header{position:sticky;top:0;z-index:5;background:var(--branco);border-bottom:3px solid var(--azul);padding:calc(8px + env(safe-area-inset-top,0px)) 16px 8px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-header img{height:38px;width:auto;display:block}
-header span{font-size:13px;color:var(--suave);text-align:right;line-height:1.25}
-main{max-width:640px;margin:0 auto;padding:20px 16px}
+body{margin:0;background:var(--papel);color:var(--tinta);font:16px/1.55 "Avenir Next","Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding-bottom:calc(80px + env(safe-area-inset-bottom,0px))}
+
+/* HEADER MODERNO COM NAVEGAÇÃO INTEGRADA */
+header{position:sticky;top:0;z-index:10;background:var(--branco);border-bottom:3px solid var(--azul);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+.header-brand{display:flex;align-items:center;gap:12px}
+header img{height:40px;width:auto;display:block;object-fit:contain}
+header .title-text{font-size:13px;color:var(--suave);line-height:1.25}
+
+/* MENU DE NAVEGAÇÃO DO TOPO (EXIBIDO EM DESKTOP) */
+.nav-topo{display:none;gap:8px}
+.nav-topo button{border:1px solid var(--linha);background:var(--papel);color:var(--tinta);font:inherit;font-size:14px;font-weight:600;padding:8px 16px;border-radius:20px;cursor:pointer;transition:all .2s ease}
+.nav-topo button:hover{background:var(--linha)}
+.nav-topo button[aria-current=page]{background:var(--azul);color:#fff;border-color:var(--azul)}
+
+main{max-width:720px;margin:0 auto;padding:24px 16px}
 .tela{display:none}.tela.on{display:block}
-h1{font-size:30px;line-height:1.1;margin:8px 0 10px;letter-spacing:-.02em}
-h2{font-size:21px;line-height:1.2;margin:28px 0 10px}
+h1{font-size:28px;line-height:1.2;margin:8px 0 12px;letter-spacing:-.02em;color:var(--azul)}
+h2{font-size:20px;line-height:1.2;margin:28px 0 12px}
 h3{font-size:16px;margin:0 0 4px}
 p{margin:0 0 12px;max-width:62ch}
-.lead{font-size:18px;color:var(--suave)}
+.lead{font-size:17px;color:var(--suave)}
 .btn{display:block;width:100%;text-align:left;border:0;border-radius:12px;padding:14px 16px;font:inherit;font-weight:600;background:var(--azul);color:#fff;margin:8px 0;text-decoration:none;cursor:pointer}
 .btn.verm{background:var(--verm)}.btn.claro{background:var(--branco);color:var(--azul);border:1.5px solid var(--azul)}
-.box{background:var(--branco);border:1px solid var(--linha);border-radius:12px;padding:14px 16px;margin:10px 0}
+.box{background:var(--branco);border:1px solid var(--linha);border-radius:12px;padding:16px;margin:12px 0}
 .box.dest{border-left:5px solid var(--verm)}
 .small{font-size:14px;color:var(--suave)}
-/* escada da estratégia */
+
+/* ESCADA DA ESTRATÉGIA */
 .escada{margin:14px 0;display:flex;flex-direction:column;gap:6px}
 .degrau{background:var(--branco);border:1px solid var(--linha);border-radius:10px;padding:10px 14px}
 .degrau:nth-child(2){margin-left:14px}.degrau:nth-child(3){margin-left:28px}.degrau:nth-child(4){margin-left:42px}
 .degrau b{display:block}.degrau.eu{background:var(--azul);color:#fff;border-color:var(--azul)}
 .degrau.eu small{color:#D9DCFF}.degrau small{color:var(--suave)}
-/* linha do tempo */
-.anos{display:grid;grid-template-columns:repeat(9,1fr);gap:3px;margin:12px 0 4px}
+
+/* LINHA DO TEMPO */
+.anos{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;margin:12px 0 4px}
 .anos div{text-align:center;font-size:12px;padding:8px 0;border-radius:6px;background:#E4E7F6;color:var(--suave)}
 .anos .pas{background:var(--azul);color:#fff}
 .anos .hoje{background:var(--verm);color:#fff;font-weight:700}
 .dois{display:grid;gap:10px}
 @media(min-width:520px){.dois{grid-template-columns:1fr 1fr}}
-.tag{display:inline-block;background:var(--verm);color:#fff;border-radius:6px;padding:1px 8px;font-size:13px;font-weight:700;margin-bottom:6px}
+.tag{display:inline-block;background:var(--verm);color:#fff;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700;margin-bottom:6px}
 .tag.az{background:var(--azul)}
-/* checklist */
+
+/* CHECKLIST & CHIPS */
 .chk{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--linha);cursor:pointer}
-.chk input{width:22px;height:22px;margin-top:2px;accent-color:var(--azul);flex:none}
+.chk input{width:20px;height:20px;margin-top:2px;accent-color:var(--azul);flex:none}
 .prog{height:8px;border-radius:4px;background:#E4E7F6;overflow:hidden;margin:6px 0 4px}.prog i{display:block;height:100%;width:0;background:var(--verm);transition:width .25s}
-/* chips */
 .chips{display:flex;flex-direction:column;gap:8px}
 .chip{border:1.5px solid var(--azul);background:var(--branco);color:var(--azul);border-radius:12px;padding:12px 14px;font:inherit;text-align:left;cursor:pointer}
 .chip[aria-pressed=true]{background:var(--azul);color:#fff}
@@ -64,9 +76,19 @@ input[type=search]{width:100%;font:inherit;padding:12px;border:1.5px solid var(-
 dt{font-weight:700;color:var(--azul)}dd{margin:0 0 10px}
 .op{display:block;width:100%;text-align:left;font:inherit;background:var(--papel);border:1.5px solid var(--linha);border-radius:10px;padding:12px;margin:8px 0;cursor:pointer}
 .op.ok{border-color:#1B8A4B;background:#E6F6EC}.op.no{border-color:var(--verm);background:#FDECEE}
-nav{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--branco);border-top:1px solid var(--linha);display:grid;grid-template-columns:repeat(5,1fr);padding-bottom:env(safe-area-inset-bottom,0px)}
-nav button{border:0;background:none;font:inherit;font-size:12px;color:var(--suave);padding:10px 2px 9px;cursor:pointer;border-top:3px solid transparent}
-nav button[aria-current=page]{color:var(--azul);font-weight:700;border-top-color:var(--verm)}
+
+/* MENU DO RODAPÉ (MOBILE) */
+nav.nav-rodape{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--branco);border-top:1px solid var(--linha);display:grid;grid-template-columns:repeat(5,1fr);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav.nav-rodape button{border:0;background:none;font:inherit;font-size:12px;color:var(--suave);padding:10px 2px 9px;cursor:pointer;border-top:3px solid transparent}
+nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;border-top-color:var(--verm)}
+
+/* ADAPTAÇÃO PARA ECRÃS GRANDES (DESKTOP) */
+@media(min-width: 768px) {
+  body{padding-bottom:20px}
+  .nav-topo{display:flex}
+  nav.nav-rodape{display:none}
+}
+
 :focus-visible{outline:3px solid var(--verm);outline-offset:2px}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 .gut{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}
@@ -83,7 +105,20 @@ nav button[aria-current=page]{color:var(--azul);font-weight:700;border-top-color
 </style>
 </head>
 <body>
-<header><img src="logo-mpma.png" alt="Ministério Público do Estado do Maranhão"><span><b>SEPLAG</b><br>Apoio ao Promotor</span></header>
+<header>
+  <div class="header-brand">
+    <img src="logo-mpma.png" alt="Ministério Público do Estado do Maranhão">
+    <span class="title-text"><b>SEPLAG</b><br>Apoio ao Promotor</span>
+  </div>
+  <nav class="nav-topo" aria-label="Navegação Superior">
+    <button data-go="inicio" aria-current="page">Início</button>
+    <button data-go="estrategia">Estratégia</button>
+    <button data-go="papj">PAPJ</button>
+    <button data-go="projetos">Projetos</button>
+    <button data-go="mais">Mais</button>
+  </nav>
+</header>
+
 <main>
 
 <!-- INÍCIO -->
@@ -236,18 +271,27 @@ nav button[aria-current=page]{color:var(--azul);font-weight:700;border-top-color
 </section>
 
 </main>
-<nav aria-label="Seções">
+
+<!-- MENU DE RODAPÉ APENAS PARA MOBILE -->
+<nav class="nav-rodape" aria-label="Seções Mobile">
 <button data-go="inicio" aria-current="page">Início</button>
 <button data-go="estrategia">Estratégia</button>
 <button data-go="papj">PAPJ</button>
 <button data-go="projetos">Projetos</button>
 <button data-go="mais">Mais</button>
 </nav>
+
 <script>
 const $=s=>document.querySelector(s);
-function ir(id){document.querySelectorAll('.tela').forEach(t=>t.classList.toggle('on',t.id===id));
- document.querySelectorAll('nav button').forEach(b=>{if(b.dataset.go===id)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
- scrollTo(0,0);try{history.replaceState(null,'','#'+id)}catch(e){}}
+function ir(id){
+  document.querySelectorAll('.tela').forEach(t=>t.classList.toggle('on',t.id===id));
+  document.querySelectorAll('button[data-go]').forEach(b=>{
+    if(b.dataset.go===id) b.setAttribute('aria-current','page');
+    else b.removeAttribute('aria-current');
+  });
+  scrollTo(0,0);
+  try{history.replaceState(null,'','#'+id)}catch(e){}
+}
 document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)ir(g.dataset.go)});
 if(location.hash&&$(location.hash))ir(location.hash.slice(1));
 
@@ -255,7 +299,7 @@ if(location.hash&&$(location.hash))ir(location.hash.slice(1));
 const passos=["Fazer o inventário e a categorização dos procedimentos extrajudiciais e processos da unidade","Identificar padrões de demanda e escolher problemas estruturais para ação programada, em vez de tratar caso a caso","Definir objetivos, metas e indicadores de esforço e de resultado","Ligar cada meta a um objetivo estratégico do PEI-MPMA e do PEN-MP","Abrir à comunidade: audiências públicas, reuniões e parceiros locais","Definir cronograma e forma de monitoramento"];
 let feito=[];try{feito=JSON.parse(localStorage.getItem('papj')||'[]')}catch(e){}
 function desenha(){$('#lista').innerHTML=passos.map((p,i)=>`<label class="chk"><input type="checkbox" data-i="${i}" ${feito.includes(i)?'checked':''}><span>${p}</span></label>`).join('');
- $('#barra').style.width=feito.length/passos.length*100+'%';$('#contagem').textContent=feito.length+' de '+passos.length+' etapas';}
+ $('#barra').style.width=feito.length/passos.length*100+'\%';$('#contagem').textContent=feito.length+' de '+passos.length+' etapas';}
 $('#lista').addEventListener('change',e=>{const i=+e.target.dataset.i;feito=e.target.checked?[...feito,i]:feito.filter(x=>x!==i);try{localStorage.setItem('papj',JSON.stringify(feito))}catch(x){}desenha()});
 desenha();
 
