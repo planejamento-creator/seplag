@@ -34,7 +34,15 @@ h3{font-size:16px;margin:0 0 4px}
 p{margin:0 0 12px;max-width:62ch}
 .lead{font-size:17px;color:var(--suave)}
 .btn{display:block;width:100%;text-align:left;border:0;border-radius:12px;padding:14px 16px;font:inherit;font-weight:600;background:var(--azul);color:#fff;margin:8px 0;text-decoration:none;cursor:pointer}
-.btn.verm{background:var(--verm)}.btn.claro{background:var(--branco);color:var(--azul);border:1.5px solid var(--azul)}
+.btn.claro{background:var(--branco);color:var(--azul);border:1.5px solid var(--azul)}
+.btn:hover{opacity:.95}
+
+/* CARTÕES INTERATIVOS DE ATUAÇÃO */
+.card-acao{background:var(--branco);border:1.5px solid var(--linha);border-radius:12px;padding:16px;margin:10px 0;cursor:pointer;transition:all .2s ease;text-align:left;width:100%;font:inherit}
+.card-acao:hover{border-color:var(--azul);box-shadow:0 4px 12px rgba(38,43,140,0.08);transform:translateY(-1px)}
+.card-acao h3{color:var(--azul);display:flex;justify-content:space-between;align-items:center}
+.card-acao h3::after{content:"→";color:var(--verm);font-size:18px}
+
 .box{background:var(--branco);border:1px solid var(--linha);border-radius:12px;padding:16px;margin:12px 0}
 .box.dest{border-left:5px solid var(--verm)}
 .small{font-size:14px;color:var(--suave)}
@@ -122,18 +130,35 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
 
 <!-- INÍCIO -->
 <section class="tela on" id="inicio">
-<h1>Toda atuação começa com um plano.</h1>
-<p class="lead">A SEPLAG está aqui para ajudar a construí-lo. Este app leva para a sua promotoria o que foi apresentado no Curso de Ingresso 2026.</p>
-<button class="btn" data-go="papj">Montar o plano da minha promotoria</button>
-<button class="btn claro" data-go="projetos">Tenho uma ideia: projeto, campanha ou iniciativa?</button>
-<a class="btn verm" href="mailto:planejamento@mpma.mp.br?subject=Promotor%20de%20Justi%C3%A7a%20-%20apoio%20da%20SEPLAG">Falar com a SEPLAG (planejamento@mpma.mp.br)</a>
-<a class="btn claro" href="https://wa.me/5598991541905">WhatsApp da SEPLAG: (98) 99154-1905</a>
+<h1>Secretaria de Planejamento e Gestão (SEPLAG)</h1>
+<p class="lead">Bem-vindo(a) ao seu portal de apoio institucional[cite: 1]. Aqui encontra orientações sobre o Planejamento Estratégico, elaboração do PAPJ, gestão de projetos, inovação, cultura e demais frentes de governança[cite: 1].</p>
 
 <h2>O que a SEPLAG faz por você</h2>
-<div class="box"><h3>Planejamento Estratégico Institucional</h3><p class="small" style="margin:0">Coordena o PEI e assessora as áreas meio e finalística em programas, projetos, campanhas e iniciativas.</p></div>
-<div class="box"><h3>Laboratório de Inovação (NEXUS)</h3><p class="small" style="margin:0">Soluções, pesquisa e tecnologia para a sua atividade.</p></div>
-<div class="box"><h3>Centro Cultural do MPMA (CCMP)</h3><p class="small" style="margin:0">Cultura como caminho para a defesa dos direitos fundamentais.</p></div>
-<div class="box"><h3>Representação no CNMP</h3><p class="small" style="margin:0">O MPMA participa dos fóruns de gestão estratégica e inovação do CNMP.</p></div>
+<p class="small">Selecione uma das áreas abaixo para aceder diretamente às orientações e ferramentas:</p>
+
+<button class="card-acao" data-go="estrategia">
+  <h3>Planejamento Estratégico Institucional</h3>
+  <p class="small" style="margin:4px 0 0">Coordenação do PEI-MPMA, PEN-MP[cite: 1], diretrizes e acompanhamento via reuniões táticas e estratégicas (RAE/RAT)[cite: 1].</p>
+</button>
+
+<button class="card-acao" data-go="papj">
+  <h3>Plano de Atuação da Promotoria (PAPJ)</h3>
+  <p class="small" style="margin:4px 0 0">Diagnóstico territorial, Matriz GUT[cite: 1], roteiro de metas e acesso direto ao Portal PAPJ para cadastro[cite: 1].</p>
+</button>
+
+<button class="card-acao" data-go="projetos">
+  <h3>Projetos, Campanhas e Iniciativas</h3>
+  <p class="small" style="margin:4px 0 0">Orientações sobre o ciclo de vida de projetos[cite: 1], integração com os CAOs e propostas institucionais[cite: 1].</p>
+</button>
+
+<button class="card-acao" data-go="mais">
+  <h3>Dados, Inovação, Cultura e Redes</h3>
+  <p class="small" style="margin:4px 0 0">Laboratório NEXUS[cite: 1], Mapa Social MPMA[cite: 1], Centro Cultural (CCMP)[cite: 1], redes de colaboração[cite: 1] e glossário.</p>
+</button>
+
+<h2>Canais de Atendimento</h2>
+<a class="btn" href="mailto:planejamento@mpma.mp.br?subject=Promotor%20de%20Justi%C3%A7a%20-%20apoio%20da%20SEPLAG" style="background:var(--azul);">E-mail da SEPLAG: planejamento@mpma.mp.br</a>
+<a class="btn claro" href="https://wa.me/5598991541905">WhatsApp da SEPLAG: (98) 99154-1905</a>
 
 <h2>Instale no celular</h2>
 <div class="box dest"><p><b>iPhone (Safari):</b> toque em Compartilhar e depois em “Adicionar à Tela de Início”.</p><p style="margin:0"><b>Android (Chrome):</b> abra o menu ⋮ e toque em “Instalar aplicativo”.</p></div>
@@ -178,7 +203,7 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
 <ul><li>Análise processual da promotoria</li><li>Indicadores sociais com base em dados oficiais</li><li>Audiências públicas</li></ul>
 
 <h2>Etapa 2: priorize as demandas</h2>
-<p>Use a <b>Matriz GUT</b>: ela analisa cada problema por <b>G</b>ravidade, <b>U</b>rgência e <b>T</b>endência, e ajuda na decisão sobre o que tratar primeiro.</p>
+<p>Use a <b>Matriz GUT</b>[cite: 1]: ela analisa cada problema por <b>G</b>ravidade, <b>U</b>rgência e <b>T</b>endência, e ajuda na decisão sobre o que tratar primeiro.</p>
 <div class="box">
 <h3>Hora de praticar</h3>
 <ol class="passos" style="margin-bottom:0"><li>Liste 5 problemas da área de atuação da sua promotoria</li><li>Aplique a Matriz GUT e faça o ranking</li><li>Eleja o problema a priorizar agora</li><li>Use-o para montar o plano de atuação do tema</li></ol></div>
@@ -190,7 +215,7 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
 <div><label for="gg">Gravidade</label><select id="gg"></select></div>
 <div><label for="gu">Urgência</label><select id="gu"></select></div>
 <div><label for="gt">Tendência</label><select id="gt"></select></div></div>
-<button class="btn" id="gadd">Adicionar ao ranking</button>
+<button class="btn" id="gadd" style="background:var(--azul);">Adicionar ao ranking</button>
 <div id="grank" aria-live="polite"></div></div>
 
 <h2>Seu roteiro</h2>
@@ -202,10 +227,10 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
 <ul>
   <li>Oficinas presenciais e virtuais</li>
   <li>Assessoramento técnico individualizado</li>
-  <li>Acesse o sistema oficial para cadastrar e monitorar no <a href="https://papj.mpma.mp.br/workspace_session/new" target="_blank" rel="noopener">Portal PAPJ</a></li>
+  <li>Acesse o sistema oficial para cadastrar e monitorar no <a href="https://papj.mpma.mp.br/workspace_session/new" target="_blank" rel="noopener">Portal PAPJ</a>[cite: 1]</li>
 </ul>
 <p class="small">O PAPJ é o parâmetro do indicador de resolutividade (Recomendação de Caráter Geral CNMP-CN nº 01/2023) e documenta a sua atuação no vitaliciamento.</p>
-<a class="btn verm" href="https://papj.mpma.mp.br/workspace_session/new" target="_blank" rel="noopener">Acessar o Sistema PAPJ para Cadastrar</a>
+<a class="btn" href="https://papj.mpma.mp.br/workspace_session/new" target="_blank" rel="noopener" style="background:var(--azul);">Acessar o Sistema PAPJ para Cadastrar</a>
 <a class="btn claro" href="mailto:planejamento@mpma.mp.br?subject=Pedido%20de%20assessoria%20para%20o%20PAPJ">Pedir assessoria (planejamento@mpma.mp.br)</a>
 </section>
 
@@ -226,7 +251,7 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
 <p><b>CAO Saúde:</b> Previne Brasil e Atenção Básica; Rede Materno e Infantil (RAMI); Rede de Atenção Psicossocial.</p>
 <p><b>CAO Mulher:</b> CAO Mulher Itinerante; PADHUM Mulher.</p>
 <p><b>CAO Educação:</b> Planos Municipais de Educação; Financiar para Educar.</p>
-<p><b>CAO Direitos Humanos e Cidadania:</b> Conhecendo e Divulgando os Direitos Humanos; Quem Escolhe o Seu Caminho? Você ou as Drogas?; Rede do Bem; PADHUM Rua.</p>
+<p><b>CAO Direitos Humanos e Cidadania:</b> Conhecendo e Divulgando os Derechos Humanos; Quem Escolhe o Seu Caminho? Você ou as Drogas?; Rede do Bem; PADHUM Rua.</p>
 <p><b>CAO Criminal:</b> Banco de Dados com identificação genética e íris.</p>
 <p style="margin:0"><b>CAO Consumidor:</b> Campanha “Você como Produto das Redes Sociais e Cibersegurança”; Roteiros de Atuação e Fiscalização dos Serviços Essenciais.</p></div></details>
 
@@ -238,7 +263,7 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
 <h2>Como propor um projeto</h2>
 <ol class="passos">
 <li>Envie a proposta à SEPLAG</li><li>Análise conjunta com os CAOs</li><li>Parecer de viabilidade e alinhamento estratégico</li><li>Deliberação da CGPE</li><li>Comunicação do resultado. Em caso de reprovação, é possível pedir nova análise.</li></ol>
-<a class="btn verm" href="mailto:planejamento@mpma.mp.br?subject=Proposta%20de%20projeto">Enviar proposta (planejamento@mpma.mp.br)</a>
+<a class="btn" href="mailto:planejamento@mpma.mp.br?subject=Proposta%20de%20projeto" style="background:var(--azul);">Enviar proposta (planejamento@mpma.mp.br)</a>
 </section>
 
 <!-- MAIS -->
@@ -267,7 +292,7 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
 <details open><summary>Teste seus conhecimentos</summary><div id="quiz"></div></details>
 <details><summary>Fale com a SEPLAG</summary><div>
 <p>Secretaria de Planejamento e Gestão, MPMA.</p>
-<a class="btn verm" href="https://wa.me/5598991541905">WhatsApp: (98) 99154-1905</a>
+<a class="btn" href="https://wa.me/5598991541905" style="background:var(--azul);">WhatsApp: (98) 99154-1905</a>
 <a class="btn claro" href="tel:+559832191777">Telefone: (98) 3219-1777</a>
 <p class="small">Outros ramais: (98) 3219-1698, 1710 e 1659.</p>
 <a class="btn claro" href="mailto:planejamento@mpma.mp.br">E-mail: planejamento@mpma.mp.br</a>
