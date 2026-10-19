@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="only light">
 <meta name="supported-color-schemes" content="light">
-<title>SEPLAG · Apoio ao Promotor</title>
+<title>SEPLAG · Apoio ao Promotor(a)</title>
 <meta name="theme-color" content="#1B226B">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon-192.png">
@@ -136,7 +136,7 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
 <header>
   <div class="header-brand">
     <img src="logo-mpma.png" alt="Ministério Público do Estado do Maranhão">
-    <span class="title-text"><b>SEPLAG</b><br>Apoio ao Promotor</span>
+    <span class="title-text"><b>SEPLAG</b><br>Apoio ao Promotor(a)</span>
   </div>
   <nav class="nav-topo" aria-label="Navegação superior">
     <button data-go="inicio" aria-current="page">Início</button>
@@ -482,14 +482,51 @@ function gl(q=''){q=q.toLowerCase();$('#gloss').innerHTML=G.filter(g=>(g[0]+g[1]
 gl();$('#busca').addEventListener('input',e=>gl(e.target.value));
 
 /* quiz */
-const Q=[["Qual reunião acompanha a área meio, a cada trimestre?",["RAT","RAE","RAP"],0],["Qual é a primeira etapa para construir o PAPJ?",["Diagnóstico","Encerramento","Execução"],0],["Ações para informar, conscientizar e mudar comportamento são uma…",["Campanha","Iniciativa","Programa"],0],["Sobre independência funcional e planejamento:",["Resguarda a atividade-fim, mas não dispensa as estratégias dos instrumentos de planejamento","Dispensa o promotor de seguir o PEI","Vale só para a área meio"],0],["Quem delibera sobre a proposta de projeto de um promotor?",["A CGPE, após parecer da SEPLAG com os CAOs","Somente o CAO","O promotor, sozinho"],0]];
-let qi=0,pts=0;
-function pergunta(){const el=$('#quiz');if(qi>=Q.length){el.innerHTML=`<h3>Você acertou ${pts} de ${Q.length}.</h3><p class="small">${pts===Q.length?'Excelente! Você domina o essencial.':'Revise as seções Estratégia, PAPJ e Projetos e tente de novo.'}</p><button class="btn claro" id="de-novo">Refazer</button>`;$('#de-novo').onclick=()=>{qi=0;pts=0;pergunta()};return}
- const [t,o,c]=Q[qi];const ord=o.map((x,i)=>[x,i]).sort(()=>Math.random()-.5);
- el.innerHTML=`<p class="small">Pergunta ${qi+1} de ${Q.length}</p><h3>${t}</h3>`+ord.map(([x,i])=>`<button class="op" data-i="${i}">${x}</button>`).join('')+'<div id="fb" class="small" aria-live="polite"></div>';
- el.querySelectorAll('.op').forEach(b=>b.onclick=()=>{const ok=+b.dataset.i===c;if(ok)pts++;el.querySelectorAll('.op').forEach(x=>{x.disabled=true;if(+x.dataset.i===c)x.classList.add('ok')});if(!ok)b.classList.add('no');
-  $('#fb').innerHTML=(ok?'Certo! ':'Resposta correta destacada em verde. ')+'<button class="btn" id="prox" style="margin-top:8px">'+(qi+1<Q.length?'Próxima':'Ver resultado')+'</button>';$('#prox').onclick=()=>{qi++;pergunta()}})}
-pergunta();
+const OBS={
+ E:["Estratégia","Revise a escada do planejamento (PEI, PGA, PAPJ e Projeto Executivo), as reuniões RAE e RAT e o papel da CGPE.","estrategia"],
+ P:["PAPJ","Revise o diagnóstico, a Matriz GUT (como pontuar e priorizar), o roteiro e onde cadastrar o plano oficial.","papj"],
+ J:["Projetos","Revise a diferença entre campanha, iniciativa, projeto e programa, o ciclo de vida (PDCA) e como propor um projeto.","projetos"]};
+const Q=[
+["Qual reunião acompanha a área meio, a cada trimestre?",["RAT","RAE","RAP"],0,"E"],
+["Qual é a primeira etapa para construir o PAPJ?",["Diagnóstico","Encerramento","Execução"],0,"P"],
+["Ações para informar, conscientizar e mudar comportamento são uma…",["Campanha","Iniciativa","Programa"],0,"J"],
+["Sobre independência funcional e planejamento:",["Resguarda a atividade-fim, mas não dispensa as estratégias dos instrumentos de planejamento","Dispensa o promotor de seguir o PEI","Vale só para a área meio"],0,"E"],
+["Quem delibera sobre a proposta de projeto de um promotor?",["A CGPE, após parecer da SEPLAG com os CAOs","Somente o CAO","O promotor, sozinho"],0,"J"],
+["Quem preside a CGPE (Comissão de Gestão do Planejamento Estratégico)?",["O Procurador-Geral de Justiça","O Corregedor-Geral","O Secretário da SEPLAG"],0,"E"],
+["Na Matriz GUT, as letras significam:",["Gravidade, Urgência e Tendência","Gestão, Unidade e Território","Gravidade, Utilidade e Tempo"],0,"P"],
+["Na calculadora GUT, como é obtida a pontuação de cada problema?",["Multiplicando G × U × T","Somando G + U + T","Fazendo a média das três notas"],0,"P"],
+["O ciclo PDCA, usado na execução de projetos, significa:",["Planejar, Fazer, Verificar e Agir","Priorizar, Decidir, Comunicar e Avaliar","Propor, Debater, Concluir e Arquivar"],0,"J"],
+["Onde é feito o cadastro oficial do Plano de Atuação da Promotoria?",["No Portal PAPJ","Por e-mail ao CAO","No site da ESMP"],0,"P"]
+];
+let seq=[],qi=0,pts=0,por={},erros=[];
+function inicia(){seq=Q.map((_,i)=>i).sort(()=>Math.random()-.5);qi=0;pts=0;erros=[];por={E:[0,0],P:[0,0],J:[0,0]};pergunta()}
+function final(){
+ const el=$('#quiz'),n=Q.length,pc=Math.round(pts/n*100);
+ const msg=pts>=9?'Excelente! Você domina o essencial.':pts>=7?'Muito bom! Falta pouco para dominar o conteúdo.':pts>=5?'Bom começo. Vale revisar alguns pontos.':'É um bom momento para revisar o conteúdo do portal com calma.';
+ const ks=Object.keys(OBS).map(k=>({k,a:por[k][0],t:por[k][1],p:por[k][1]?por[k][0]/por[k][1]:1}));
+ const fracos=ks.filter(x=>x.p<1).sort((a,b)=>a.p-b.p);
+ let h=`<h3>Você acertou ${pts} de ${n} (${pc}%)</h3><p class="small">${msg}</p>`;
+ h+='<h3 style="margin-top:16px">Desempenho por tema</h3>';
+ ks.forEach(x=>{h+=`<p class="small" style="margin:8px 0 0"><b>${OBS[x.k][0]}:</b> ${x.a} de ${x.t}</p><div class="prog"><i style="width:${Math.round(x.p*100)}%"></i></div>`});
+ h+='<h3 style="margin-top:16px">Onde aprimorar</h3>';
+ if(!fracos.length){h+='<p class="small">Nenhum ponto fraco. Você acertou todos os temas. Continue acompanhando o portal para ficar sempre atualizado.</p>'}
+ else{
+  h+=`<p class="small"><b>Observação:</b> seu ponto de maior atenção é <b>${OBS[fracos[0].k][0]}</b>. ${OBS[fracos[0].k][1]}</p>`;
+  fracos.slice(1).forEach(x=>{h+=`<p class="small"><b>${OBS[x.k][0]}:</b> ${OBS[x.k][1]}</p>`});
+  h+=fracos.map(x=>`<button class="btn claro" data-go="${OBS[x.k][2]}">Revisar: ${OBS[x.k][0]}</button>`).join('');
+ }
+ if(erros.length){h+='<h3 style="margin-top:16px">Perguntas que você errou</h3>'+erros.map(e=>`<p class="small" style="margin:0 0 10px"><b>${e[0]}</b><br>Resposta correta: ${e[1]}</p>`).join('')}
+ h+='<button class="btn" id="de-novo">Refazer o teste</button>';
+ el.innerHTML=h;$('#de-novo').onclick=inicia;
+}
+function pergunta(){
+ const el=$('#quiz');if(qi>=seq.length){final();return}
+ const [t,o,c,k]=Q[seq[qi]];const ord=o.map((x,i)=>[x,i]).sort(()=>Math.random()-.5);
+ el.innerHTML=`<p class="small">Pergunta ${qi+1} de ${seq.length}</p><h3>${t}</h3>`+ord.map(([x,i])=>`<button class="op" data-i="${i}">${x}</button>`).join('')+'<div id="fb" class="small" aria-live="polite"></div>';
+ el.querySelectorAll('.op').forEach(b=>b.onclick=()=>{const ok=+b.dataset.i===c;por[k][1]++;if(ok){pts++;por[k][0]++}else erros.push([t,o[c]]);
+  el.querySelectorAll('.op').forEach(x=>{x.disabled=true;if(+x.dataset.i===c)x.classList.add('ok')});if(!ok)b.classList.add('no');
+  $('#fb').innerHTML=(ok?'Certo! ':'Resposta correta destacada em verde. ')+'<button class="btn" id="prox" style="margin-top:8px">'+(qi+1<seq.length?'Próxima':'Ver resultado')+'</button>';$('#prox').onclick=()=>{qi++;pergunta()}})}
+inicia();
 
 /* matriz GUT */
 ['gg','gu','gt'].forEach(id=>{$('#'+id).innerHTML=[1,2,3,4,5].map(n=>`<option>${n}</option>`).join('')});
