@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SEPLAG · Apoio ao Promotor</title>
+<meta name="theme-color" content="#262B8C">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<style>
+:root{--azul:#262B8C;--verm:#E4202B;--papel:#F5F6FB;--tinta:#161A3A;--suave:#5A5F86;--linha:#DADDEE;--branco:#fff;box-sizing:border-box}
+*,*::before,*::after{box-sizing:inherit}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--papel);color:var(--tinta);font:16px/1.55 "Avenir Next","Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding-bottom:calc(72px + env(safe-area-inset-bottom,0px))}
+header{position:sticky;top:0;z-index:5;background:var(--branco);border-bottom:3px solid var(--azul);padding:calc(8px + env(safe-area-inset-top,0px)) 16px 8px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+header img{height:38px;width:auto;display:block}
+header span{font-size:13px;color:var(--suave);text-align:right;line-height:1.25}
+main{max-width:640px;margin:0 auto;padding:20px 16px}
+.tela{display:none}.tela.on{display:block}
+h1{font-size:30px;line-height:1.1;margin:8px 0 10px;letter-spacing:-.02em}
+h2{font-size:21px;line-height:1.2;margin:28px 0 10px}
+h3{font-size:16px;margin:0 0 4px}
+p{margin:0 0 12px;max-width:62ch}
+.lead{font-size:18px;color:var(--suave)}
+.btn{display:block;width:100%;text-align:left;border:0;border-radius:12px;padding:14px 16px;font:inherit;font-weight:600;background:var(--azul);color:#fff;margin:8px 0;text-decoration:none;cursor:pointer}
+.btn.verm{background:var(--verm)}.btn.claro{background:var(--branco);color:var(--azul);border:1.5px solid var(--azul)}
+.box{background:var(--branco);border:1px solid var(--linha);border-radius:12px;padding:14px 16px;margin:10px 0}
+.box.dest{border-left:5px solid var(--verm)}
+.small{font-size:14px;color:var(--suave)}
+/* escada da estratégia */
+.escada{margin:14px 0;display:flex;flex-direction:column;gap:6px}
+.degrau{background:var(--branco);border:1px solid var(--linha);border-radius:10px;padding:10px 14px}
+.degrau:nth-child(2){margin-left:14px}.degrau:nth-child(3){margin-left:28px}.degrau:nth-child(4){margin-left:42px}
+.degrau b{display:block}.degrau.eu{background:var(--azul);color:#fff;border-color:var(--azul)}
+.degrau.eu small{color:#D9DCFF}.degrau small{color:var(--suave)}
+/* linha do tempo */
+.anos{display:grid;grid-template-columns:repeat(9,1fr);gap:3px;margin:12px 0 4px}
+.anos div{text-align:center;font-size:12px;padding:8px 0;border-radius:6px;background:#E4E7F6;color:var(--suave)}
+.anos .pas{background:var(--azul);color:#fff}
+.anos .hoje{background:var(--verm);color:#fff;font-weight:700}
+.dois{display:grid;gap:10px}
+@media(min-width:520px){.dois{grid-template-columns:1fr 1fr}}
+.tag{display:inline-block;background:var(--verm);color:#fff;border-radius:6px;padding:1px 8px;font-size:13px;font-weight:700;margin-bottom:6px}
+.tag.az{background:var(--azul)}
+/* checklist */
+.chk{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--linha);cursor:pointer}
+.chk input{width:22px;height:22px;margin-top:2px;accent-color:var(--azul);flex:none}
+.prog{height:8px;border-radius:4px;background:#E4E7F6;overflow:hidden;margin:6px 0 4px}.prog i{display:block;height:100%;width:0;background:var(--verm);transition:width .25s}
+/* chips */
+.chips{display:flex;flex-direction:column;gap:8px}
+.chip{border:1.5px solid var(--azul);background:var(--branco);color:var(--azul);border-radius:12px;padding:12px 14px;font:inherit;text-align:left;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--azul);color:#fff}
+.passos{counter-reset:p;list-style:none;padding:0;margin:8px 0}
+.passos li{counter-increment:p;position:relative;padding:6px 0 6px 38px}
+.passos li::before{content:counter(p);position:absolute;left:0;top:5px;width:26px;height:26px;border-radius:50%;background:var(--azul);color:#fff;text-align:center;font-size:14px;line-height:26px;font-weight:700}
+details{background:var(--branco);border:1px solid var(--linha);border-radius:12px;margin:10px 0}
+summary{padding:14px 16px;font-weight:700;cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";float:right;color:var(--verm);font-size:20px;line-height:1}
+details[open] summary::after{content:"–"}
+details>div{padding:0 16px 14px}
+input[type=search]{width:100%;font:inherit;padding:12px;border:1.5px solid var(--linha);border-radius:10px;margin-bottom:8px}
+dt{font-weight:700;color:var(--azul)}dd{margin:0 0 10px}
+.op{display:block;width:100%;text-align:left;font:inherit;background:var(--papel);border:1.5px solid var(--linha);border-radius:10px;padding:12px;margin:8px 0;cursor:pointer}
+.op.ok{border-color:#1B8A4B;background:#E6F6EC}.op.no{border-color:var(--verm);background:#FDECEE}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--branco);border-top:1px solid var(--linha);display:grid;grid-template-columns:repeat(5,1fr);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav button{border:0;background:none;font:inherit;font-size:12px;color:var(--suave);padding:10px 2px 9px;cursor:pointer;border-top:3px solid transparent}
+nav button[aria-current=page]{color:var(--azul);font-weight:700;border-top-color:var(--verm)}
+:focus-visible{outline:3px solid var(--verm);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.gut{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}
+.gut label{font-size:13px;color:var(--suave)}
+.gut select,.gutn{width:100%;font:inherit;padding:10px;border:1.5px solid var(--linha);border-radius:10px;background:var(--branco)}
+.gutn{margin-bottom:6px}
+.rk{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--linha)}
+.rk b.n{flex:none;min-width:44px;text-align:center;background:var(--azul);color:#fff;border-radius:8px;padding:4px 0}
+.rk:first-child b.n{background:var(--verm)}
+.rk span{flex:1}.rk button{border:0;background:none;color:var(--suave);font-size:20px;cursor:pointer;padding:4px 8px}
+.num{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.num div{background:var(--papel);border-radius:10px;padding:10px;text-align:center}
+.num b{display:block;font-size:22px;color:var(--azul)}.num small{font-size:12px;color:var(--suave)}
+</style>
+</head>
+<body>
+<header><img src="logo-mpma.png" alt="Ministério Público do Estado do Maranhão"><span><b>SEPLAG</b><br>Apoio ao Promotor</span></header>
+<main>
+
+<!-- INÍCIO -->
+<section class="tela on" id="inicio">
+<h1>Toda atuação começa com um plano.</h1>
+<p class="lead">A SEPLAG está aqui para ajudar a construí-lo. Este app leva para a sua promotoria o que foi apresentado no Curso de Ingresso 2026.</p>
+<button class="btn" data-go="papj">Montar o plano da minha promotoria</button>
+<button class="btn claro" data-go="projetos">Tenho uma ideia: projeto, campanha ou iniciativa?</button>
+<a class="btn verm" href="mailto:planejamento@mpma.mp.br?subject=Promotor%20de%20Justi%C3%A7a%20-%20apoio%20da%20SEPLAG">Falar com a SEPLAG por e-mail</a>
+<a class="btn claro" href="https://wa.me/5598991541905">WhatsApp da SEPLAG: (98) 99154-1905</a>
+
+<h2>O que a SEPLAG faz por você</h2>
+<div class="box"><h3>Planejamento Estratégico Institucional</h3><p class="small" style="margin:0">Coordena o PEI e assessora as áreas meio e finalística em programas, projetos, campanhas e iniciativas.</p></div>
+<div class="box"><h3>Laboratório de Inovação (NEXUS)</h3><p class="small" style="margin:0">Soluções, pesquisa e tecnologia para a sua atividade.</p></div>
+<div class="box"><h3>Centro Cultural do MPMA (CCMP)</h3><p class="small" style="margin:0">Cultura como caminho para a defesa dos direitos fundamentais.</p></div>
+<div class="box"><h3>Representação no CNMP</h3><p class="small" style="margin:0">O MPMA participa dos fóruns de gestão estratégica e inovação do CNMP.</p></div>
+
+<h2>Instale no celular</h2>
+<div class="box dest"><p><b>iPhone (Safari):</b> toque em Compartilhar e depois em “Adicionar à Tela de Início”.</p><p style="margin:0"><b>Android (Chrome):</b> abra o menu ⋮ e toque em “Instalar aplicativo”.</p></div>
+</section>
+
+<!-- ESTRATÉGIA -->
+<section class="tela" id="estrategia">
+<h1>Da estratégia à sua promotoria</h1>
+<p class="lead">O planejamento do MPMA desce em degraus. O seu degrau é o PAPJ.</p>
+<div class="escada">
+<div class="degrau"><b>Plano Estratégico (PEN-MP e PEI-MPMA)</b><small>Mapa Estratégico: missão, visão, valores e objetivos</small></div>
+<div class="degrau"><b>Plano Geral de Atuação</b><small>Prioridades da instituição</small></div>
+<div class="degrau eu"><b>PAPJ – Plano de Atuação da Promotoria</b><small>Prioridades, metas e indicadores da sua unidade</small></div>
+<div class="degrau"><b>Projeto executivo</b><small>Ações com prazo, equipe e entrega</small></div>
+</div>
+<p class="small">O PEI-MPMA é de observância obrigatória por todos os órgãos e unidades. A independência funcional resguarda a sua atividade-fim, mas não autoriza deixar de cumprir as estratégias fixadas nos instrumentos de planejamento.</p>
+
+<h2>PEI-MPMA 2021–2029</h2>
+<div class="anos" role="img" aria-label="Linha do tempo de 2021 a 2029, com 2026 destacado como hoje">
+<div class="pas">21</div><div class="pas">22</div><div class="pas">23</div><div class="pas">24</div><div class="pas">25</div><div class="hoje">26</div><div>27</div><div>28</div><div>29</div></div>
+<p class="small">2026 é o “hoje” do plano. O PEI é reavaliado a cada três anos.</p>
+<div class="box"><h3>De onde vem o plano</h3>
+<p class="small" style="margin:0">O PEN-MP (2020–2029) foi aprovado pelo CNMP em 26 de março de 2019. Com base na Resolução CNMP nº 147/2016, o Colégio de Procuradores aprovou, em sessão virtual de 30 de setembro de 2020, a adesão do MPMA ao Mapa Estratégico nacional. O PEI-MPMA 2021–2029 é regulamentado pelo Ato Regulamentar nº 26/2022.</p></div>
+
+<h2>Como o resultado é acompanhado</h2>
+<div class="dois">
+<div class="box"><span class="tag">RAE</span><h3>Reunião de Análise da Estratégia</h3><p class="small" style="margin:0">Área <b>finalística</b>. Acontece a cada semestre.</p></div>
+<div class="box"><span class="tag az">RAT</span><h3>Reunião de Acompanhamento Tático-operacional</h3><p class="small" style="margin:0">Área <b>meio</b>. Acontece a cada trimestre.</p></div>
+</div>
+<h2>Quem decide</h2>
+<div class="box"><h3>CGPE – Comissão de Gestão do Planejamento Estratégico</h3><p class="small" style="margin:0">Presidida pelo Procurador-Geral de Justiça, aprova o PEI, os indicadores, os programas e os projetos. A SEPLAG assessora a CGPE e monitora a execução.</p></div>
+<div class="box"><h3>Corregedoria-Geral</h3><p class="small" style="margin:0">Acompanha o cumprimento do plano pelos membros na atividade finalística.</p></div>
+</section>
+
+<!-- PAPJ -->
+<section class="tela" id="papj">
+<h1>Plano de Atuação da Promotoria (PAPJ)</h1>
+<p class="lead">Ferramenta de gestão para planejar a promotoria a partir de um diagnóstico e da participação da sociedade, com mais efetividade e resolutividade.</p>
+<div class="box dest"><h3>Resolutividade</h3><p class="small" style="margin:0">Capacidade de resolver problemas de forma eficaz e eficiente, com resultados concretos. Priorize o que tem maior impacto social e aja de forma proativa.</p></div>
+
+<h2>Etapa 1: diagnóstico</h2>
+<ul><li>Análise processual da promotoria</li><li>Indicadores sociais com base em dados oficiais</li><li>Audiências públicas</li></ul>
+
+<h2>Etapa 2: priorize as demandas</h2>
+<p>Use a <b>Matriz GUT</b>: ela analisa cada problema por <b>G</b>ravidade, <b>U</b>rgência e <b>T</b>endência, e ajuda na decisão sobre o que tratar primeiro.</p>
+<div class="box">
+<h3>Hora de praticar</h3>
+<ol class="passos" style="margin-bottom:0"><li>Liste 5 problemas da área de atuação da sua promotoria</li><li>Aplique a Matriz GUT e faça o ranking</li><li>Eleja o problema a priorizar agora</li><li>Use-o para montar o plano de atuação do tema</li></ol></div>
+<div class="box dest" id="gutbox">
+<h3>Calculadora GUT</h3>
+<p class="small">Dê uma nota de 1 (baixo) a 5 (alto) para cada critério. A pontuação é G × U × T. Os dados ficam só neste aparelho.</p>
+<input class="gutn" id="gn" type="text" maxlength="80" placeholder="Descreva o problema" aria-label="Descrição do problema">
+<div class="gut">
+<div><label for="gg">Gravidade</label><select id="gg"></select></div>
+<div><label for="gu">Urgência</label><select id="gu"></select></div>
+<div><label for="gt">Tendência</label><select id="gt"></select></div></div>
+<button class="btn" id="gadd">Adicionar ao ranking</button>
+<div id="grank" aria-live="polite"></div></div>
+
+<h2>Seu roteiro</h2>
+<p class="small">Marque o que já fez. O progresso fica salvo neste aparelho.</p>
+<div class="prog"><i id="barra"></i></div><p class="small" id="contagem"></p>
+<div id="lista"></div>
+
+<h2>Como a SEPLAG ajuda</h2>
+<ul><li>Oficinas presenciais e virtuais</li><li>Assessoramento técnico individualizado</li><li>Construção, publicação e monitoramento no Portal PAPJ</li></ul>
+<p class="small">O PAPJ é o parâmetro do indicador de resolutividade (Recomendação de Caráter Geral CNMP-CN nº 01/2023) e documenta a sua atuação no vitaliciamento.</p>
+<a class="btn verm" href="mailto:planejamento@mpma.mp.br?subject=Pedido%20de%20assessoria%20para%20o%20PAPJ">Pedir assessoria para o meu PAPJ</a>
+</section>
+
+<!-- PROJETOS -->
+<section class="tela" id="projetos">
+<h1>O que eu quero fazer?</h1>
+<p class="lead">Toque no que mais se parece com a sua ideia.</p>
+<div class="chips" id="chips"></div>
+<div class="box dest" id="resp" aria-live="polite" hidden></div>
+
+<details><summary>Já existe algo parecido? Projetos institucionais</summary><div>
+<p class="small">Antes de criar, veja se há projeto, campanha ou iniciativa do seu CAO que a sua promotoria possa integrar.</p>
+<p><b>CAO Infância e Juventude:</b> Combate Permanente à Violência Sexual; Proteção Integral e Articulação em Rede.</p>
+<p><b>CAO PROAD:</b> Programa Transformar (diários eletrônicos, controle interno, advocacia pública municipal, pregão eletrônico); Ética e Integridade Empresarial.</p>
+<p><b>CAO Idoso e Pessoa com Deficiência:</b> Campanha de inclusão e acessibilidade; Cartilha de Enfrentamento à Violência à Mulher com Deficiência; Conselho atuante.</p>
+<p><b>CAO UMA:</b> Águas Claras – Vida Saudável; Combate ao Desmatamento no Bioma Cerrado.</p>
+<p><b>CAO Júri:</b> Núcleo de Atendimento às Vítimas (NAV); Priorização das Investigações dos Homicídios; MPMA na Defesa da Vida; Banco de Dados.</p>
+<p><b>CAO Saúde:</b> Previne Brasil e Atenção Básica; Rede Materno e Infantil (RAMI); Rede de Atenção Psicossocial.</p>
+<p><b>CAO Mulher:</b> CAO Mulher Itinerante; PADHUM Mulher.</p>
+<p><b>CAO Educação:</b> Planos Municipais de Educação; Financiar para Educar.</p>
+<p><b>CAO Direitos Humanos e Cidadania:</b> Conhecendo e Divulgando os Direitos Humanos; Quem Escolhe o Seu Caminho? Você ou as Drogas?; Rede do Bem; PADHUM Rua.</p>
+<p><b>CAO Criminal:</b> Banco de Dados com identificação genética e íris.</p>
+<p style="margin:0"><b>CAO Consumidor:</b> Campanha “Você como Produto das Redes Sociais e Cibersegurança”; Roteiros de Atuação e Fiscalização dos Serviços Essenciais.</p></div></details>
+
+<h2>Ciclo de vida de um projeto</h2>
+<ol class="passos">
+<li><b>Abertura:</b> Termo de Abertura (TAP)</li><li><b>Planejamento</b></li><li><b>Execução:</b> plano de ação com matriz de responsabilidades</li><li><b>Monitoramento e controle:</b> Reuniões de Acompanhamento (RAP)</li><li><b>Encerramento:</b> Termo de Encerramento (TEP)</li></ol>
+<p class="small">Na execução, use o PDCA: planejar (Plan), fazer (Do), verificar (Check) e agir (Act). Todo projeto precisa estar ligado a um ou mais objetivos do Mapa Estratégico.</p>
+
+<h2>Como propor um projeto</h2>
+<ol class="passos">
+<li>Envie a proposta à SEPLAG</li><li>Análise conjunta com os CAOs</li><li>Parecer de viabilidade e alinhamento estratégico</li><li>Deliberação da CGPE</li><li>Comunicação do resultado. Em caso de reprovação, é possível pedir nova análise.</li></ol>
+<a class="btn verm" href="mailto:planejamento@mpma.mp.br?subject=Proposta%20de%20projeto">Enviar proposta à SEPLAG</a>
+</section>
+
+<!-- MAIS -->
+<section class="tela" id="mais">
+<h1>Mais da SEPLAG</h1>
+<details><summary>Dados e indicadores</summary><div>
+<p>A SEPLAG produz informação gerencial e relatórios anuais de atividades, de gestão e de desempenho do PEI. O <b>Mapa Social MPMA</b> traz indicadores sociais da comarca para o seu planejamento.</p>
+<p><b>Um bom indicador no PAPJ é:</b> claro, mensurável, com fonte definida e periodicidade.</p>
+<a class="btn claro" href="mailto:planejamento@mpma.mp.br?subject=Solicita%C3%A7%C3%A3o%20de%20dados">Solicitar dados à SEPLAG</a></div></details>
+<details><summary>Laboratório de Inovação NEXUS</summary><div>
+<p>Promove a cultura de inovação com projetos de melhoria contínua e projetos-piloto em cocriação com as promotorias. Foi lançado em 7 de março de 2024, com bolsas PIBITI da FAPEMA em parceria com a UEMA.</p>
+<div class="num"><div><b>19</b><small>planos de trabalho submetidos</small></div><div><b>10</b><small>aprovados com bolsa PIBITI</small></div><div><b>12</b><small>planos em andamento</small></div><div><b>62</b><small>temáticas no edital PIBITI/MPMA 2024</small></div></div>
+<p>Você pode propor um desafio ao laboratório ou se tornar laboratorista. Entre as frentes: Mapa Social MPMA e Sistema de Inteligência Artificial FRATRIA.</p>
+<p><b>IA com responsabilidade:</b> proteja os dados pessoais (LGPD), mantenha supervisão humana e siga as diretrizes do CNMP.</p></div></details>
+<details><summary>Centro Cultural (CCMP)</summary><div>
+<div class="num"><div><b>25 mil+</b><small>pessoas impactadas em 5 anos</small></div><div><b>3.900</b><small>pessoas em 2023</small></div><div><b>15</b><small>atividades em 2023</small></div><div><b>96</b><small>artistas participantes</small></div></div>
+<p>A cultura é um direito e um caminho para a defesa dos demais direitos fundamentais.</p>
+<p>Atividades: Mostra Homenagem, Papo Literário e bate-papo com o artista em exposição. Promotorias do interior também podem participar da agenda.</p></div></details>
+<details><summary>Redes de colaboração</summary><div>
+<p><b>RIMA:</b> Rede de Inovação no Maranhão. <b>MP Digital:</b> rede nacional de inovação digital do MP (Res. CNMP nº 257/2023). <b>FNG-MP:</b> Fórum Nacional de Gestão, com seis comitês temáticos. <b>Prêmio CNMP:</b> premia e dissemina projetos bem-sucedidos do MP brasileiro.</p></div></details>
+<details><summary>Em andamento na SEPLAG</summary><div>
+<p>Mapa Social MPMA · Sistema de Inteligência Artificial FRATRIA · Portal PAPJ · Avanço da agenda digital no MPMA.</p>
+<p>Também há capacitações em IA generativa e elaboração de assistentes personalizados, em parceria com a INOVAJUR.</p></div></details>
+<details><summary>Glossário de siglas</summary><div>
+<input type="search" id="busca" placeholder="Buscar sigla ou termo" aria-label="Buscar no glossário"><dl id="gloss"></dl></div></details>
+<details open><summary>Teste seus conhecimentos</summary><div id="quiz"></div></details>
+<details><summary>Fale com a SEPLAG</summary><div>
+<p>Secretaria de Planejamento e Gestão, MPMA.</p>
+<a class="btn verm" href="https://wa.me/5598991541905">WhatsApp: (98) 99154-1905</a>
+<a class="btn claro" href="tel:+559832191777">Telefone: (98) 3219-1777</a>
+<p class="small">Outros ramais: (98) 3219-1698, 1710 e 1659.</p>
+<a class="btn claro" href="mailto:planejamento@mpma.mp.br">planejamento@mpma.mp.br</a>
+<a class="btn claro" href="https://planejamento.mpma.mp.br" target="_blank" rel="noopener">Site: planejamento.mpma.mp.br</a></div></details>
+</section>
+
+</main>
+<nav aria-label="Seções">
+<button data-go="inicio" aria-current="page">Início</button>
+<button data-go="estrategia">Estratégia</button>
+<button data-go="papj">PAPJ</button>
+<button data-go="projetos">Projetos</button>
+<button data-go="mais">Mais</button>
+</nav>
+<script>
+const $=s=>document.querySelector(s);
+function ir(id){document.querySelectorAll('.tela').forEach(t=>t.classList.toggle('on',t.id===id));
+ document.querySelectorAll('nav button').forEach(b=>{if(b.dataset.go===id)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+ scrollTo(0,0);try{history.replaceState(null,'','#'+id)}catch(e){}}
+document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)ir(g.dataset.go)});
+if(location.hash&&$(location.hash))ir(location.hash.slice(1));
+
+/* roteiro do PAPJ */
+const passos=["Fazer o inventário e a categorização dos procedimentos extrajudiciais e processos da unidade","Identificar padrões de demanda e escolher problemas estruturais para ação programada, em vez de tratar caso a caso","Definir objetivos, metas e indicadores de esforço e de resultado","Ligar cada meta a um objetivo estratégico do PEI-MPMA e do PEN-MP","Abrir à comunidade: audiências públicas, reuniões e parceiros locais","Definir cronograma e forma de monitoramento"];
+let feito=[];try{feito=JSON.parse(localStorage.getItem('papj')||'[]')}catch(e){}
+function desenha(){$('#lista').innerHTML=passos.map((p,i)=>`<label class="chk"><input type="checkbox" data-i="${i}" ${feito.includes(i)?'checked':''}><span>${p}</span></label>`).join('');
+ $('#barra').style.width=feito.length/passos.length*100+'%';$('#contagem').textContent=feito.length+' de '+passos.length+' etapas';}
+$('#lista').addEventListener('change',e=>{const i=+e.target.dataset.i;feito=e.target.checked?[...feito,i]:feito.filter(x=>x!==i);try{localStorage.setItem('papj',JSON.stringify(feito))}catch(x){}desenha()});
+desenha();
+
+/* assistente de projetos */
+const tipos=[
+["Quero informar e conscientizar o público","Campanha","Conjunto de ações planejadas para informar, conscientizar e promover a compreensão do público sobre uma temática, motivando reflexão e mudança de comportamento."],
+["Preciso de um resultado operacional, rápido","Iniciativa","Ação planejada e executada para alcançar resultados operacionais específicos, de forma rápida e eficiente."],
+["Tenho uma entrega com prazo e orçamento","Projeto","Empreendimento planejado, com ações inter-relacionadas e coordenadas, para alcançar objetivos específicos dentro de limites de orçamento e prazo, terminando em uma entrega ou produto."],
+["Tenho vários projetos com um objetivo comum","Programa","Conjunto de projetos coordenados de forma articulada, com objetivos comuns. Surge ao desmembrar um projeto complexo ou ao agregar projetos relacionados que rodam em paralelo."]];
+$('#chips').innerHTML=tipos.map((t,i)=>`<button class="chip" aria-pressed="false" data-t="${i}">${t[0]}</button>`).join('');
+$('#chips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;const t=tipos[b.dataset.t];
+ document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',c===b));
+ const r=$('#resp');r.hidden=false;r.innerHTML=`<h3>${t[1]}</h3><p style="margin:0">${t[2]}</p>`});
+
+/* glossário */
+const G=[["CAO","Centro de Apoio Operacional. Apoia a elaboração dos planos táticos-operacionais e a análise de projetos."],["CCMP","Centro Cultural do Ministério Público."],["CGPE","Comissão de Gestão do Planejamento Estratégico. Aprova o PEI, programas e projetos."],["CNMP","Conselho Nacional do Ministério Público."],["ESMP","Escola Superior do Ministério Público."],["FNG-MP","Fórum Nacional de Gestão do Ministério Público."],["FRATRIA","Sistema de Inteligência Artificial do MPMA, em implantação."],["LGPD","Lei Geral de Proteção de Dados."],["Mapa Social","Mapa Social MPMA: indicadores sociais para diagnóstico territorial."],["MP Digital","Rede Nacional de Inovação Digital do Ministério Público."],["NEXUS","Laboratório de Inovação do MPMA, vinculado à SEPLAG."],["GUT","Matriz de Gravidade, Urgência e Tendência, usada para priorizar problemas."],["INOVAJUR","Parceira do MPMA nas capacitações de IA generativa e assistentes personalizados."],["PAPJ","Plano de Atuação das Promotorias de Justiça."],["Portal PAPJ","Ambiente para elaborar, publicar e monitorar o PAPJ."],["PDCA","Plan, Do, Check, Act: ciclo de melhoria contínua."],["PEI-MPMA","Planejamento Estratégico Institucional do MPMA 2021–2029."],["PEN-MP","Plano Estratégico Nacional do Ministério Público 2020–2029."],["PIBITI","Bolsas de iniciação em desenvolvimento tecnológico e inovação, em parceria com FAPEMA e UEMA."],["PNAE","Plano Nacional de Atuação Estratégica: compromissos anuais pactuados com o CNMP."],["PTO","Plano Tático-Operacional das unidades."],["RAE","Reunião de Análise da Estratégia: área finalística, semestral."],["RAP","Reunião de Acompanhamento do Projeto."],["RAT","Reunião de Acompanhamento Tático-operacional: área meio, trimestral."],["RIMA","Rede de Inovação no Maranhão."],["SEPLAG","Secretaria de Planejamento e Gestão."],["TAP","Termo de Abertura do projeto."],["TEP","Termo de Encerramento do projeto."]];
+function gl(q=''){q=q.toLowerCase();$('#gloss').innerHTML=G.filter(g=>(g[0]+g[1]).toLowerCase().includes(q)).map(g=>`<dt>${g[0]}</dt><dd>${g[1]}</dd>`).join('')||'<p class="small">Nada encontrado. Tente outra palavra.</p>'}
+gl();$('#busca').addEventListener('input',e=>gl(e.target.value));
+
+/* quiz */
+const Q=[["Qual reunião acompanha a área meio, a cada trimestre?",["RAT","RAE","RAP"],0],["Qual é a primeira etapa para construir o PAPJ?",["Diagnóstico","Encerramento","Execução"],0],["Ações para informar, conscientizar e mudar comportamento são uma…",["Campanha","Iniciativa","Programa"],0],["Sobre independência funcional e planejamento:",["Resguarda a atividade-fim, mas não dispensa as estratégias dos instrumentos de planejamento","Dispensa o promotor de seguir o PEI","Vale só para a área meio"],0],["Quem delibera sobre a proposta de projeto de um promotor?",["A CGPE, após parecer da SEPLAG com os CAOs","Somente o CAO","O promotor, sozinho"],0]];
+let qi=0,pts=0;
+function pergunta(){const el=$('#quiz');if(qi>=Q.length){el.innerHTML=`<h3>Você acertou ${pts} de ${Q.length}.</h3><p class="small">${pts===Q.length?'Excelente! Você domina o essencial.':'Revise as seções Estratégia, PAPJ e Projetos e tente de novo.'}</p><button class="btn claro" id="de-novo">Refazer</button>`;$('#de-novo').onclick=()=>{qi=0;pts=0;pergunta()};return}
+ const [t,o,c]=Q[qi];const ord=o.map((x,i)=>[x,i]).sort(()=>Math.random()-.5);
+ el.innerHTML=`<p class="small">Pergunta ${qi+1} de ${Q.length}</p><h3>${t}</h3>`+ord.map(([x,i])=>`<button class="op" data-i="${i}">${x}</button>`).join('')+'<p id="fb" class="small" aria-live="polite"></p>';
+ el.querySelectorAll('.op').forEach(b=>b.onclick=()=>{const ok=+b.dataset.i===c;if(ok)pts++;el.querySelectorAll('.op').forEach(x=>{x.disabled=true;x.classList.add(+x.dataset.i===c?'ok':'no');if(+x.dataset.i!==c&&x!==b)x.classList.remove('no')});if(!ok)b.classList.add('no');
+  $('#fb').innerHTML=(ok?'Certo! ':'Resposta correta destacada em verde. ')+'<button class="btn" id="prox" style="margin-top:8px">'+(qi+1<Q.length?'Próxima':'Ver resultado')+'</button>';$('#prox').onclick=()=>{qi++;pergunta()}})}
+pergunta();
+/* matriz GUT */
+['gg','gu','gt'].forEach(id=>{$('#'+id).innerHTML=[1,2,3,4,5].map(n=>`<option>${n}</option>`).join('')});
+let gl2=[];try{gl2=JSON.parse(localStorage.getItem('gut')||'[]')}catch(e){}
+function gdesenha(){const r=$('#grank');r.innerHTML='';[...gl2].map((x,i)=>({...x,i})).sort((a,b)=>b.g*b.u*b.t-a.g*a.u*a.t).forEach(x=>{
+ const d=document.createElement('div');d.className='rk';const n=document.createElement('b');n.className='n';n.textContent=x.g*x.u*x.t;
+ const t=document.createElement('span');t.textContent=x.nome+' (G'+x.g+' U'+x.u+' T'+x.t+')';
+ const b=document.createElement('button');b.textContent='×';b.setAttribute('aria-label','Remover '+x.nome);b.onclick=()=>{gl2.splice(x.i,1);gsalva();gdesenha()};
+ d.append(n,t,b);r.append(d)});
+ if(!gl2.length)r.innerHTML='<p class="small">Nenhum problema ainda.</p>'}
+function gsalva(){try{localStorage.setItem('gut',JSON.stringify(gl2))}catch(e){}}
+$('#gadd').onclick=()=>{const nome=$('#gn').value.trim();if(!nome){$('#gn').focus();return}
+ gl2.push({nome,g:+$('#gg').value,u:+$('#gu').value,t:+$('#gt').value});gsalva();$('#gn').value='';gdesenha()};
+gdesenha();
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+</script>
+</body>
+</html>
