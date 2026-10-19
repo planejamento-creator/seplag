@@ -4,19 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>SEPLAG · Apoio ao Promotor</title>
-<meta name="theme-color" content="#262B8C">
+<meta name="theme-color" content="#1B226B">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <style>
 :root {
-  --azul: #262B8C;
-  --azul-hover: #1e2270;
+  --azul: #1B226B;
+  --azul-hover: #12174A;
   --verm: #E4202B;
   --papel: #F0F2F9;
-  --tinta: #161A3A;
-  --suave: #4A4F76;
-  --linha: #D5D9E8;
+  --tinta: #11142D;
+  --suave: #3D426B;
+  --linha: #C8CDDF;
   --branco: #ffffff;
   box-sizing: border-box;
 }
@@ -34,7 +34,7 @@ body {
   padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
 }
 
-/* HEADER COM DESIGN DE APP */
+/* HEADER MODELO APP */
 header {
   position: sticky;
   top: 0;
@@ -45,7 +45,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 4px 12px rgba(38, 43, 140, 0.05);
+  box-shadow: 0 4px 12px rgba(27, 34, 107, 0.08);
 }
 
 .header-brand {
@@ -67,7 +67,7 @@ header .title-text {
   line-height: 1.25;
 }
 
-/* NAVEGAÇÃO SUPERIOR (DESKTOP) */
+/* NAVEGAÇÃO SUPERIOR DESKTOP */
 .nav-topo {
   display: none;
   gap: 6px;
@@ -96,7 +96,7 @@ header .title-text {
 .nav-topo button[aria-current=page] {
   background: var(--azul);
   color: #fff;
-  box-shadow: 0 2px 6px rgba(38, 43, 140, 0.25);
+  box-shadow: 0 2px 6px rgba(27, 34, 107, 0.3);
 }
 
 /* CONTAINER PRINCIPAL */
@@ -120,20 +120,20 @@ main {
   align-items: center;
   gap: 6px;
   background: var(--branco);
-  border: 1.5px solid var(--linha);
+  border: 1.5px solid var(--azul);
   color: var(--azul);
   font-size: 14px;
   font-weight: 700;
-  padding: 6px 14px;
+  padding: 8px 16px;
   border-radius: 20px;
   cursor: pointer;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   transition: all 0.2s ease;
 }
 
 .btn-voltar:hover {
-  border-color: var(--azul);
-  background: #f4f5fc;
+  background: var(--azul);
+  color: #fff;
 }
 
 h1 {
@@ -175,7 +175,7 @@ p { margin: 0 0 14px; font-size: 16px; }
   margin: 12px 0;
   text-decoration: none;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(38, 43, 140, 0.12);
+  box-shadow: 0 4px 12px rgba(27, 34, 107, 0.15);
   transition: all 0.2s ease;
 }
 
@@ -192,7 +192,7 @@ p { margin: 0 0 14px; font-size: 16px; }
 }
 
 .btn.claro:hover {
-  background: #f4f5fc;
+  background: #EAEFFC;
 }
 
 /* CARTÕES E EXPANSÍVEIS (DETAILS) */
@@ -212,7 +212,7 @@ p { margin: 0 0 14px; font-size: 16px; }
 
 .card-acao:hover {
   border-color: var(--azul);
-  box-shadow: 0 6px 16px rgba(38, 43, 140, 0.08);
+  box-shadow: 0 6px 16px rgba(27, 34, 107, 0.1);
   transform: translateY(-2px);
 }
 
@@ -243,7 +243,6 @@ details.card-expand:hover {
   border-color: var(--azul);
 }
 
-/* DESTAQUE APENAS QUANDO ABERTO (CLICADO) */
 details.card-expand[open] {
   border-color: var(--azul);
   border-left: 5px solid var(--azul);
@@ -330,7 +329,7 @@ dt { font-weight: 700; color: var(--azul); font-size: 16px; } dd { margin: 0 0 1
 .op { display: block; width: 100%; text-align: left; font: inherit; background: var(--papel); border: 1.5px solid var(--linha); border-radius: 10px; padding: 12px; margin: 8px 0; cursor: pointer; font-size: 15px; }
 .op.ok { border-color: #1B8A4B; background: #E6F6EC; } .op.no { border-color: var(--verm); background: #FDECEE; }
 
-/* MENU INFERIOR FIXO (MOBILE) */
+/* MENU INFERIOR MOBILE */
 nav.nav-rodape { position: fixed; left: 0; right: 0; bottom: 0; z-index: 6; background: var(--branco); border-top: 1px solid var(--linha); display: grid; grid-template-columns: repeat(5, 1fr); padding-bottom: env(safe-area-inset-bottom, 0px); box-shadow: 0 -4px 15px rgba(0,0,0,0.05); }
 nav.nav-rodape button { border: 0; background: none; font: inherit; font-size: 12px; font-weight: 600; color: var(--suave); padding: 10px 2px 8px; cursor: pointer; border-top: 3px solid transparent; }
 nav.nav-rodape button[aria-current=page] { color: var(--azul); font-weight: 700; border-top-color: var(--verm); }
@@ -583,10 +582,21 @@ nav.nav-rodape button[aria-current=page] { color: var(--azul); font-weight: 700;
 <div class="chips" id="chips"></div>
 <div class="box dest" id="resp" aria-live="polite" hidden></div>
 
+<!-- OBSERVAÇÃO DE CONSULTA DE INICIATIVAS EXISTENTES -->
+<div class="box dest" style="border-left-color: var(--azul);">
+  <h3>Onde consultar iniciativas ou projetos existentes?</h3>
+  <p class="small" style="margin-bottom:8px">Antes de elaborar uma nova proposta, verifique se a ação já existe para unir forças e evitar duplicidade:</p>
+  <ul class="small" style="padding-left:18px; margin:0">
+    <li><b>Centros de Apoio Operacional (CAOs):</b> Consulte o seu CAO temático para conhecer as campanhas ativas.</li>
+    <li><b>Banco de Projetos da SEPLAG:</b> Entre em contato com a equipe de planejamento para verificar histórico de propostas pré-existentes.</li>
+    <li><b>Portal do MPMA:</b> Na seção de Planejamento e Projetos Institucionais.</li>
+  </ul>
+</div>
+
 <details class="card-expand">
-  <summary>Já existe algo parecido? Projetos institucionais</summary>
+  <summary>Projetos e Campanhas em andamento nos CAOs</summary>
   <div>
-    <p class="small" style="margin-top:8px">Antes de criar, veja se há projeto, campanha ou iniciativa do seu CAO que a sua promotoria possa integrar:</p>
+    <p class="small" style="margin-top:8px">Conheça as iniciativas institucionais das quais a sua promotoria pode participar diretamente:</p>
     <p><b>CAO Infância e Juventude:</b> Combate Permanente à Violência Sexual; Proteção Integral e Articulação em Rede.</p>
     <p><b>CAO PROAD:</b> Programa Transformar (diários eletrônicos, controle interno, advocacia pública municipal, pregão eletrônico); Ética e Integridade Empresarial.</p>
     <p><b>CAO Idoso e Pessoa com Deficiência:</b> Campanha de inclusão e acessibilidade; Cartilha de Enfrentamento à Violência à Mulher com Deficiência; Conselho atuante.</p>
