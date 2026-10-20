@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <style>
 :root{color-scheme:only light;--azul:#1B226B;--azul-hover:#12174A;--verm:#E4202B;--papel:#F0F2F9;--tinta:#11142D;--suave:#2F3560;--linha:#C8CDDF;--branco:#fff;box-sizing:border-box}
-*,*::before,*::after{box-sizing:inherit}
+*,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;color-scheme:only light;background:#F0F2F9;-webkit-tap-highlight-color:transparent}
 body{margin:0;background:var(--papel);color:var(--tinta);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;font-size:17px;padding-bottom:calc(70px + env(safe-area-inset-bottom,0px))}
 
@@ -95,6 +95,7 @@ select{
   background-repeat:no-repeat;background-position:right 10px center;background-size:12px 8px;
 }
 select option{text-align:center}
+select{text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
 .gut{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}
 .gut div{text-align:center}
 .gut label{display:block;font-size:15px;font-weight:600;color:var(--suave);margin-bottom:4px;text-align:center}
@@ -337,11 +338,6 @@ nav.nav-rodape{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(-
 <p class="small">Antes de criar uma proposta, consulte o Banco de Projetos do Triênio 2025–2027 e veja se há projeto, campanha ou iniciativa que a sua promotoria possa integrar. Escolha a área e o setor:</p>
 
 <div id="banco"></div>
-
-<div class="box az">
-  <p style="margin-bottom:8px"><b>Não achou o que procura?</b> Fale com o CAO do seu tema ou pergunte à SEPLAG se já existe iniciativa parecida:</p>
-  <a class="btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=planejamento@mpma.mp.br&su=Consulta%20sobre%20projeto%20existente" target="_blank" rel="noopener" style="margin-bottom:0">Consultar a SEPLAG por e-mail</a>
-</div>
 
 <h2>2. O que eu quero fazer?</h2>
 <p class="lead">Toque no que mais se parece com a sua ideia:</p>
@@ -634,11 +630,12 @@ $c=root.querySelector('#bp-cont'),$l=root.querySelector('#bp-lista'),
 $t=[...root.querySelectorAll('.bp-tipos input')];
 const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
 
+const curto=k=>{const m=k.match(/\(([^()]+)\)\s*$/);return m?m[1]:k};
 function setores(){
   const a=$a.value;
   if(!a){$s.disabled=true;$s.innerHTML=opt('','Primeiro escolha a área');return}
   const cont={};D[a].forEach(p=>cont[p[0]]=(cont[p[0]]||0)+1);
-  $s.innerHTML=opt('','Todos os setores ('+D[a].length+')')+Object.keys(cont).sort((x,y)=>x.localeCompare(y,'pt')).map(k=>opt(k,k+' ('+cont[k]+')')).join('');
+  $s.innerHTML=opt('','Todos os setores ('+D[a].length+')')+Object.keys(cont).sort((x,y)=>x.localeCompare(y,'pt')).map(k=>opt(k,curto(k)+' ('+cont[k]+')')).join('');
   $s.disabled=false;
 }
 function lista(){
