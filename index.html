@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="only light">
 <meta name="supported-color-schemes" content="light">
-<title>SEPLAG · Apoio ao Promotor(a)</title>
+<title>SEPLAG · Apoio ao(à) Promotor(a)</title>
 <meta name="theme-color" content="#1B226B">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon-192.png">
@@ -13,28 +13,18 @@
 <style>
 :root{color-scheme:only light;--azul:#1B226B;--azul-hover:#12174A;--verm:#E4202B;--papel:#F0F2F9;--tinta:#11142D;--suave:#2F3560;--linha:#C8CDDF;--branco:#fff;box-sizing:border-box}
 *,*::before,*::after{box-sizing:inherit}
-html{-webkit-text-size-adjust:100%;color-scheme:only light;background:#F0F2F9}
-body{margin:0;background:var(--papel);color:var(--tinta);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;font-size:17px;padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+html{-webkit-text-size-adjust:100%;color-scheme:only light;background:#F0F2F9;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--papel);color:var(--tinta);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;font-size:17px;padding-bottom:calc(122px + env(safe-area-inset-bottom,0px))}
 
 header{position:sticky;top:0;z-index:10;background:var(--branco);border-bottom:2px solid var(--linha);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 12px rgba(27,34,107,.08)}
 .header-brand{display:flex;align-items:center;gap:12px}
 header img{height:40px;width:auto;display:block;object-fit:contain}
 header .title-text{font-size:15px;color:var(--suave);line-height:1.25}
 
-.nav-topo{display:none;gap:6px;background:var(--papel);padding:4px;border-radius:30px}
-.nav-topo button{border:none;background:transparent;color:var(--suave);font:inherit;font-size:15px;font-weight:600;padding:8px 18px;border-radius:20px;cursor:pointer}
-.nav-topo button:hover{color:var(--azul)}
-.nav-topo button[aria-current=page]{background:var(--azul);color:#fff}
-
 main{max-width:720px;margin:20px auto;padding:0 16px}
 .tela{display:none}
 .tela.on{display:block;animation:fadeIn .2s ease-in-out}
 @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-
-/* VOLTAR */
-.btn-voltar{display:inline-flex;align-items:center;gap:8px;background:var(--azul);border:0;color:#fff;font:inherit;font-size:16px;font-weight:700;padding:10px 20px;border-radius:24px;cursor:pointer;margin:0 0 16px;box-shadow:0 3px 10px rgba(27,34,107,.25)}
-.btn-voltar:hover{background:var(--azul-hover)}
-.btn-voltar.fim{margin:24px 0 0}
 
 h1{font-size:27px;font-weight:800;line-height:1.25;margin:8px 0 12px;color:var(--azul)}
 h2{font-size:21px;font-weight:700;line-height:1.3;margin:28px 0 12px}
@@ -44,19 +34,23 @@ p{margin:0 0 14px;font-size:17px}
 .small{font-size:16px;color:var(--suave);line-height:1.55}
 ul,ol{font-size:17px}
 
-.btn{display:flex;align-items:center;justify-content:center;width:100%;text-align:center;border:0;border-radius:12px;padding:15px 18px;font:inherit;font-weight:600;font-size:16px;background:var(--azul);color:#fff;margin:12px 0;text-decoration:none;cursor:pointer;box-shadow:0 4px 12px rgba(27,34,107,.15)}
-.btn:hover{background:var(--azul-hover)}
+/* BOTÕES: brancos com borda azul; ficam azuis só ao passar o mouse / durante o toque; nunca ficam "selecionados" */
+.btn{display:flex;align-items:center;justify-content:center;width:100%;text-align:center;border:1.5px solid var(--azul);border-radius:12px;padding:15px 18px;font:inherit;font-weight:600;font-size:16px;background:var(--branco);color:var(--azul);margin:12px 0;text-decoration:none;cursor:pointer;box-shadow:none}
 a.btn{width:auto;max-width:100%;align-self:stretch}
 details.card-expand>div{min-width:0}
-.btn.claro{background:var(--branco);color:var(--azul);border:1.5px solid var(--azul);box-shadow:none}
-.btn.claro:hover{background:#EAEFFC}
+@media(hover:hover){
+  .btn:hover,.pn button:not(:disabled):hover,.card-acao:hover,.op:not(:disabled):hover{background:var(--azul);color:#fff;border-color:var(--azul)}
+  .card-acao:hover h3,.card-acao:hover p{color:#fff}
+  nav.nav-rodape .ic button:hover{color:var(--azul)}
+  .chip:hover{background:var(--azul);color:#fff}
+}
+.btn:active,.pn button:not(:disabled):active{background:var(--azul);color:#fff}
+.btn:focus:not(:focus-visible),.pn button:focus:not(:focus-visible),.card-acao:focus:not(:focus-visible),.chip:focus:not(:focus-visible),.op:focus:not(:focus-visible),summary:focus:not(:focus-visible){outline:none}
 
 .card-acao{display:block;background:var(--branco);border:1.5px solid var(--linha);border-radius:14px;padding:18px;margin:12px 0;cursor:pointer;text-align:left;width:100%;font:inherit;color:inherit}
-.card-acao:hover{border-color:var(--azul);box-shadow:0 6px 16px rgba(27,34,107,.1)}
 .card-acao h3{color:var(--azul);display:flex;justify-content:space-between;align-items:center;gap:10px}
 .card-acao h3::after{content:"→";color:var(--verm);font-size:22px}
 
-/* EXPANSÍVEIS */
 details.card-expand{background:var(--branco);border:1.5px solid var(--linha);border-radius:14px;margin:12px 0;overflow:hidden}
 details.card-expand[open]{border-color:var(--azul)}
 details.card-expand summary{padding:16px 18px;font-weight:700;font-size:17px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px}
@@ -73,7 +67,6 @@ details.card-expand>div .btn{margin:12px 0 0}
 .box p,.box li{font-size:16px}
 
 .escada{margin:14px 0;display:flex;flex-direction:column;gap:10px}
-
 .anos{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;margin:12px 0 6px}
 .anos div{text-align:center;font-size:14px;padding:8px 0;border-radius:8px;background:#E4E7F6;color:var(--suave)}
 .anos .pas{background:var(--azul);color:#fff}
@@ -93,7 +86,6 @@ details.card-expand>div .btn{margin:12px 0 0}
 .passos li::before{content:counter(p);position:absolute;left:0;top:7px;width:28px;height:28px;border-radius:50%;background:var(--azul);color:#fff;text-align:center;font-size:14px;line-height:28px;font-weight:700}
 
 input[type=search],input[type=text],select{width:100%;font:inherit;font-size:16px;padding:12px;border:1.5px solid var(--linha);border-radius:10px;margin-bottom:8px;background:var(--branco);color:var(--tinta)}
-/* CAIXAS DE SELEÇÃO CENTRALIZADAS (inclusive no celular) */
 select{
   -webkit-appearance:none;-moz-appearance:none;appearance:none;
   text-align:center;text-align-last:center;-moz-text-align-last:center;
@@ -110,13 +102,19 @@ select option{text-align:center}
 dt{font-weight:700;color:var(--azul);font-size:17px}
 dd{margin:0 0 12px;font-size:16px}
 .op{display:block;width:100%;text-align:left;font:inherit;background:var(--papel);border:1.5px solid var(--linha);border-radius:10px;padding:12px;margin:8px 0;cursor:pointer;font-size:16px;color:var(--tinta)}
-.op.ok{border-color:#1B8A4B;background:#E6F6EC}.op.no{border-color:var(--verm);background:#FDECEE}
+.op.ok{border-color:#1B8A4B;background:#E6F6EC;color:var(--tinta)}.op.no{border-color:var(--verm);background:#FDECEE;color:var(--tinta)}
 
-nav.nav-rodape{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--branco);border-top:1px solid var(--linha);display:grid;grid-template-columns:repeat(5,1fr);padding-bottom:env(safe-area-inset-bottom,0px);box-shadow:0 -4px 15px rgba(0,0,0,.05)}
-nav.nav-rodape button{border:0;background:none;font:inherit;font-size:13px;font-weight:600;color:var(--suave);padding:12px 2px 10px;cursor:pointer;border-top:3px solid transparent}
-nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;border-top-color:var(--verm)}
+/* RODAPÉ: Anterior / Seguinte + ícones */
+nav.nav-rodape{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--branco);border-top:1px solid var(--linha);padding-bottom:env(safe-area-inset-bottom,0px);box-shadow:0 -4px 15px rgba(0,0,0,.05)}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:8px 12px 2px;max-width:720px;margin:0 auto}
+.pn button{border:1.5px solid var(--azul);background:var(--branco);color:var(--azul);font:inherit;font-size:15px;font-weight:700;padding:9px 10px;border-radius:22px;cursor:pointer}
+.pn button:disabled{opacity:.35;cursor:default}
+.ic{display:grid;grid-template-columns:repeat(5,1fr);max-width:720px;margin:0 auto}
+.ic button{border:0;background:none;font:inherit;font-size:12px;font-weight:600;color:var(--suave);padding:6px 2px 6px;cursor:pointer;border-top:3px solid transparent;display:flex;flex-direction:column;align-items:center;gap:2px}
+.ic button:focus:not(:focus-visible){outline:none}
+.ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ic button[aria-current=page]{color:var(--azul);font-weight:700;border-top-color:var(--verm)}
 
-@media(min-width:768px){body{padding-bottom:30px}.nav-topo{display:flex}nav.nav-rodape{display:none}}
 :focus-visible{outline:3px solid var(--verm);outline-offset:2px}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
@@ -136,15 +134,8 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
 <header>
   <div class="header-brand">
     <img src="logo-mpma.png" alt="Ministério Público do Estado do Maranhão">
-    <span class="title-text"><b>SEPLAG</b><br>Apoio ao Promotor(a)</span>
+    <span class="title-text"><b>SEPLAG</b><br>Apoio ao(à) Promotor(a)</span>
   </div>
-  <nav class="nav-topo" aria-label="Navegação superior">
-    <button data-go="inicio" aria-current="page">Início</button>
-    <button data-go="estrategia">Estratégia</button>
-    <button data-go="papj">PAPJ</button>
-    <button data-go="projetos">Projetos</button>
-    <button data-go="mais">Mais</button>
-  </nav>
 </header>
 
 <main>
@@ -176,18 +167,37 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
 
 <h2>Canais de atendimento</h2>
 <a class="btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=planejamento@mpma.mp.br&su=Promotor%20de%20Justi%C3%A7a%20-%20Apoio%20da%20SEPLAG" target="_blank" rel="noopener">Falar com a SEPLAG por e-mail</a>
-<a class="btn claro" href="https://wa.me/5598991541905" target="_blank" rel="noopener">WhatsApp da SEPLAG: (98) 99154-1905</a>
+<a class="btn" href="https://wa.me/5598991541905" target="_blank" rel="noopener">WhatsApp da SEPLAG: (98) 99154-1905</a>
 
+<div id="instalar">
 <h2>Instale no celular</h2>
-<div class="box dest">
-  <p><b>iPhone (Safari):</b> toque em Compartilhar e depois em “Adicionar à Tela de Início”.</p>
-  <p style="margin:0"><b>Android (Chrome):</b> abra o menu ⋮ e toque em “Instalar aplicativo”.</p>
+<button class="btn" id="btn-instalar" type="button">Instalar aplicativo</button>
+<details class="card-expand" id="como-instalar" open>
+  <summary>Como instalar (Android e iPhone)</summary>
+  <div>
+    <h3>Android (Chrome)</h3>
+    <ol class="passos">
+      <li>Abra este endereço no <b>Chrome</b>.</li>
+      <li>Toque no botão <b>Instalar aplicativo</b> acima. Se aparecer uma janela, toque em <b>Instalar</b>.</li>
+      <li>Se o botão não abrir a janela, toque no menu <b>⋮</b> (canto superior direito) e depois em <b>Instalar aplicativo</b> ou <b>Adicionar à tela inicial</b>.</li>
+      <li>O ícone da SEPLAG aparece na tela inicial do celular.</li>
+    </ol>
+    <h3 style="margin-top:18px">iPhone / iPad (Safari)</h3>
+    <ol class="passos">
+      <li>Abra este endereço no <b>Safari</b>. Em outros navegadores a opção não aparece.</li>
+      <li>Toque no botão <b>Compartilhar</b> (quadrado com uma seta para cima, na barra inferior).</li>
+      <li>Role a lista e toque em <b>Adicionar à Tela de Início</b>.</li>
+      <li>Toque em <b>Adicionar</b>. O ícone da SEPLAG aparece na tela inicial.</li>
+    </ol>
+    <p class="small" style="margin:0">No iPhone a Apple não permite instalar com um único toque, por isso o botão só mostra estas instruções.</p>
+  </div>
+</details>
+<p class="small" id="ja-instalado" hidden>O aplicativo já está instalado neste aparelho.</p>
 </div>
 </section>
 
 <!-- ESTRATÉGIA -->
 <section class="tela" id="estrategia">
-<button class="btn-voltar" data-go="inicio">← Voltar ao início</button>
 <h1>Da estratégia à sua promotoria</h1>
 <p class="lead">O planejamento do MPMA desce em degraus. Toque em cada um para entender o papel da sua promotoria:</p>
 
@@ -243,7 +253,6 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
 
 <!-- PAPJ -->
 <section class="tela" id="papj">
-<button class="btn-voltar" data-go="inicio">← Voltar ao início</button>
 <h1>Plano de Atuação da Promotoria (PAPJ)</h1>
 <p class="lead">Ferramenta de gestão para planejar a promotoria a partir de um diagnóstico e da participação da sociedade, com mais efetividade e resolutividade.</p>
 
@@ -294,7 +303,7 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
 <h2>Onde cadastrar o seu plano oficial</h2>
 <div class="box az">
   <p><b>Atenção:</b> o envio e o cadastro oficial do seu Plano de Atuação são feitos exclusivamente no <b>Portal PAPJ</b>.</p>
-  <a class="btn" href="https://papj.mpma.mp.br/workspace_session/new" target="_blank" rel="noopener" style="margin-bottom:0">Acessar o Portal PAPJ para cadastrar</a>
+  <a class="btn" href="https://papj.mpma.mp.br" target="_blank" rel="noopener" style="margin-bottom:0">Acessar o Portal PAPJ para cadastrar</a>
 </div>
 
 <h2>Como a SEPLAG ajuda</h2>
@@ -304,12 +313,11 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
 </ul>
 <p class="small">O PAPJ é o parâmetro do indicador de resolutividade (Recomendação de Caráter Geral CNMP-CN nº 01/2023) e documenta a sua atuação no vitaliciamento.</p>
 
-<a class="btn claro" href="https://mail.google.com/mail/?view=cm&fs=1&to=planejamento@mpma.mp.br&su=Pedido%20de%20assessoria%20para%20o%20PAPJ" target="_blank" rel="noopener">Pedir assessoria técnica por e-mail</a>
+<a class="btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=planejamento@mpma.mp.br&su=Pedido%20de%20assessoria%20para%20o%20PAPJ" target="_blank" rel="noopener">Pedir assessoria técnica por e-mail</a>
 </section>
 
 <!-- PROJETOS -->
 <section class="tela" id="projetos">
-<button class="btn-voltar" data-go="inicio">← Voltar ao início</button>
 <h1>Projetos, campanhas e iniciativas</h1>
 
 <h2 style="margin-top:12px">1. Já existe algo parecido?</h2>
@@ -319,7 +327,7 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
 
 <div class="box az">
   <p style="margin-bottom:8px"><b>Não achou o que procura?</b> Fale com o CAO do seu tema ou pergunte à SEPLAG se já existe iniciativa parecida:</p>
-  <a class="btn claro" href="https://mail.google.com/mail/?view=cm&fs=1&to=planejamento@mpma.mp.br&su=Consulta%20sobre%20projeto%20existente" target="_blank" rel="noopener" style="margin-bottom:0">Consultar a SEPLAG por e-mail</a>
+  <a class="btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=planejamento@mpma.mp.br&su=Consulta%20sobre%20projeto%20existente" target="_blank" rel="noopener" style="margin-bottom:0">Consultar a SEPLAG por e-mail</a>
 </div>
 
 <h2>2. O que eu quero fazer?</h2>
@@ -350,7 +358,6 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
 
 <!-- MAIS -->
 <section class="tela" id="mais">
-<button class="btn-voltar" data-go="inicio">← Voltar ao início</button>
 <h1>Mais da SEPLAG</h1>
 
 <details class="card-expand">
@@ -358,7 +365,7 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
   <div>
     <p>A SEPLAG produz informação gerencial e relatórios anuais de atividades, de gestão e de desempenho do PEI. O <b>Mapa Social MPMA</b> traz indicadores sociais da comarca para o seu planejamento.</p>
     <p class="small"><b>Um bom indicador no PAPJ é:</b> claro, mensurável, com fonte definida e periodicidade.</p>
-    <a class="btn claro" href="https://mail.google.com/mail/?view=cm&fs=1&to=planejamento@mpma.mp.br&su=Solicita%C3%A7%C3%A3o%20de%20dados" target="_blank" rel="noopener">Solicitar dados por e-mail</a>
+    <a class="btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=planejamento@mpma.mp.br&su=Solicita%C3%A7%C3%A3o%20de%20dados" target="_blank" rel="noopener">Solicitar dados por e-mail</a>
   </div>
 </details>
 
@@ -422,40 +429,73 @@ nav.nav-rodape button[aria-current=page]{color:var(--azul);font-weight:700;borde
   <div>
     <p>Secretaria de Planejamento e Gestão, MPMA.</p>
     <a class="btn" href="https://wa.me/5598991541905" target="_blank" rel="noopener">WhatsApp: (98) 99154-1905</a>
-    <a class="btn claro" href="tel:+559832191777">Telefone: (98) 3219-1777</a>
+    <a class="btn" href="tel:+559832191777">Telefone: (98) 3219-1777</a>
     <p class="small" style="margin-top:12px">Outros ramais: (98) 3219-1698, 1710 e 1659.</p>
-    <a class="btn claro" href="https://mail.google.com/mail/?view=cm&fs=1&to=planejamento@mpma.mp.br" target="_blank" rel="noopener">E-mail: planejamento@mpma.mp.br</a>
-    <a class="btn claro" href="https://planejamento.mpma.mp.br" target="_blank" rel="noopener">Site: planejamento.mpma.mp.br</a>
+    <a class="btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=planejamento@mpma.mp.br" target="_blank" rel="noopener">E-mail: planejamento@mpma.mp.br</a>
+    <a class="btn" href="https://planejamento.mpma.mp.br" target="_blank" rel="noopener">Site: planejamento.mpma.mp.br</a>
   </div>
 </details>
 </section>
 
 </main>
 
-<nav class="nav-rodape" aria-label="Seções">
-  <button data-go="inicio" aria-current="page">Início</button>
-  <button data-go="estrategia">Estratégia</button>
-  <button data-go="papj">PAPJ</button>
-  <button data-go="projetos">Projetos</button>
-  <button data-go="mais">Mais</button>
+<nav class="nav-rodape" aria-label="Navegação">
+  <div class="pn">
+    <button id="ant" type="button">← Anterior</button>
+    <button id="seg" type="button">Seguinte →</button>
+  </div>
+  <div class="ic">
+    <button data-go="inicio" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8v10h-6v-6H9v6H3z"/></svg>Início</button>
+    <button data-go="estrategia"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>Estratégia</button>
+    <button data-go="papj"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9zM8 12h8M8 16h6"/></svg>PAPJ</button>
+    <button data-go="projetos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h6l2 2h10v11H3z"/></svg>Projetos</button>
+    <button data-go="mais"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/></svg>Mais</button>
+  </div>
 </nav>
 
 <script>
 const $=s=>document.querySelector(s);
+const ORDEM=['inicio','estrategia','papj','projetos','mais'];
+let atual='inicio';
 function ir(id){
+  if(!ORDEM.includes(id))id='inicio';
+  atual=id;
   document.querySelectorAll('.tela').forEach(t=>t.classList.toggle('on',t.id===id));
-  document.querySelectorAll('button[data-go]:not(.btn-voltar):not(.card-acao)').forEach(b=>{
+  document.querySelectorAll('.ic button').forEach(b=>{
     if(b.dataset.go===id)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');
   });
+  const i=ORDEM.indexOf(id);
+  $('#ant').disabled=i===0;$('#seg').disabled=i===ORDEM.length-1;
   scrollTo(0,0);
   try{history.replaceState(null,'','#'+id)}catch(e){}
 }
 document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)ir(g.dataset.go)});
-/* segundo botão Voltar no fim de cada página interna */
-document.querySelectorAll('.tela:not(#inicio)').forEach(t=>{
-  const b=document.createElement('button');b.className='btn-voltar fim';b.dataset.go='inicio';b.textContent='← Voltar ao início';t.append(b);
+$('#ant').onclick=()=>ir(ORDEM[ORDEM.indexOf(atual)-1]);
+$('#seg').onclick=()=>ir(ORDEM[ORDEM.indexOf(atual)+1]);
+ir(location.hash&&ORDEM.includes(location.hash.slice(1))?location.hash.slice(1):'inicio');
+
+/* links externos abrem em outra aba/janela e mantêm o aplicativo aberto */
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[target="_blank"]');if(!a)return;
+  const h=a.href;if(!/^https?:/i.test(h))return;
+  e.preventDefault();
+  window.open(h,'_blank','noopener,noreferrer');
 });
-if(location.hash&&$(location.hash))ir(location.hash.slice(1));
+
+/* instalar aplicativo */
+let dip=null;
+const instalado=()=>matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+function mostraInstalar(){
+  const ok=instalado();
+  $('#btn-instalar').hidden=ok;$('#como-instalar').hidden=ok;$('#ja-instalado').hidden=!ok;
+}
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();dip=e});
+addEventListener('appinstalled',()=>{dip=null;mostraInstalar()});
+$('#btn-instalar').onclick=()=>{
+  if(dip){dip.prompt();dip.userChoice.finally(()=>{dip=null})}
+  else{const d=$('#como-instalar');d.open=true;d.scrollIntoView({behavior:'smooth',block:'start'})}
+};
+mostraInstalar();
 
 /* roteiro do PAPJ */
 const passos=["Fazer o inventário e a categorização dos procedimentos extrajudiciais e processos da unidade","Identificar padrões de demanda e escolher problemas estruturais para ação programada, em vez de tratar caso a caso","Definir objetivos, metas e indicadores de esforço e de resultado","Ligar cada meta a um objetivo estratégico do PEI-MPMA e do PEN-MP","Abrir à comunidade: audiências públicas, reuniões e parceiros locais","Definir cronograma e forma de monitoramento"];
@@ -513,7 +553,7 @@ function final(){
  else{
   h+=`<p class="small"><b>Observação:</b> seu ponto de maior atenção é <b>${OBS[fracos[0].k][0]}</b>. ${OBS[fracos[0].k][1]}</p>`;
   fracos.slice(1).forEach(x=>{h+=`<p class="small"><b>${OBS[x.k][0]}:</b> ${OBS[x.k][1]}</p>`});
-  h+=fracos.map(x=>`<button class="btn claro" data-go="${OBS[x.k][2]}">Revisar: ${OBS[x.k][0]}</button>`).join('');
+  h+=fracos.map(x=>`<button class="btn" data-go="${OBS[x.k][2]}">Revisar: ${OBS[x.k][0]}</button>`).join('');
  }
  if(erros.length){h+='<h3 style="margin-top:16px">Perguntas que você errou</h3>'+erros.map(e=>`<p class="small" style="margin:0 0 10px"><b>${e[0]}</b><br>Resposta correta: ${e[1]}</p>`).join('')}
  h+='<button class="btn" id="de-novo">Refazer o teste</button>';
